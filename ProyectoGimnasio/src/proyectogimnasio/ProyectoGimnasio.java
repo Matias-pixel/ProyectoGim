@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
+package proyectogimnasio;
 
 /**
  *
  * @author Matías
  */
-public class Proyecto {
+public class ProyectoGimnasio {
 
     /**
      * @param args the command line arguments
