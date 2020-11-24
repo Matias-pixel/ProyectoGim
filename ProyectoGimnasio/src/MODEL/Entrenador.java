@@ -10,8 +10,8 @@ package MODEL;
  * @author Esteban V
  */
 public class Entrenador {
-    String Rut,Nombre,Apellido,Pass,Correo;
-    int id;
+    private String Rut,Nombre,Apellido,Pass,Correo;
+    private int id;
 
     public Entrenador() {
     }

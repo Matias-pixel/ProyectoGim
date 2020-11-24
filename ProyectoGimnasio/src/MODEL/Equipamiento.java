@@ -10,8 +10,8 @@ package MODEL;
  * @author Esteban V
  */
 public class Equipamiento {
-    String Nombre, Descripción;
-    int id, Tipo_equipamiento_ID;
+    private String Nombre, Descripción;
+    private int id, Tipo_equipamiento_ID;
 
     public Equipamiento() {
     }

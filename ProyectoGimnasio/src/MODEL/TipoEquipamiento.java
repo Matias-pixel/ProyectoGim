@@ -11,8 +11,8 @@ package MODEL;
  */
 public class TipoEquipamiento {
     
-   int id;
-   String nombre;
+   private int id;
+   private String nombre;
 
    public TipoEquipamiento() {
     }

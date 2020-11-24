@@ -11,8 +11,8 @@ package MODEL;
  */
 public class ActividadesRealizadas {
     
-    int id;
-    String Nombres;
+    private int id;
+    private String Nombres;
 
     public ActividadesRealizadas() {
     }
