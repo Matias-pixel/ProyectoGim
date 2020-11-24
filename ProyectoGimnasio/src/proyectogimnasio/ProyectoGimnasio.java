@@ -15,7 +15,13 @@ public class ProyectoGimnasio {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
         System.out.println("Hola mundo");
+
+        System.out.println("ola ola i k tal ola");
+        
+        System.out.println("Hola amigos de yutu");
+
     }
     
 }
