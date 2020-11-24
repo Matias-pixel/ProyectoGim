@@ -1,0 +1,77 @@
+CREATE DATABASE gimnasio;
+
+use gimnasio;
+
+CREATE TABLE tipoEquipamiento(
+    id int auto_increment,
+    nombre varchar (20),
+
+    primary key (id)
+)
+
+CREATE TABLE equipamiento(
+    id int auto_increment,
+    nombre varchar (20),
+    descripcion varchar (100),
+    tipoEquipamiento_id_fk int,
+
+    primary key(id),
+    foreign key(tipoEquipamiento_id_fk) references tipoEquipamiento(id)
+)
+
+CREATE TABLE entrenador(
+    id int auto_increment,
+    rut varchar (12),
+    nombre varchar(20),
+    apellido varchar (20),
+    contrasena varchar(100),
+    correo varchar(40),
+
+    primary key (id)
+    
+)
+
+
+CREATE TABLE actividadesRealizadas(
+    id int auto_increment,
+    nombre varchar(30),
+    entrenador_id_fk int,
+
+    primary key (id),
+    foreign key (entrenador_id_fk) references entrenador (id)
+)
+
+CREATE TABLE tipoActividad(
+    id int auto_increment,
+    nombre varchar (30),
+
+    unique(nombre),
+    primary key (id)
+)
+
+CREATE TABLE actividad(
+    id int auto_increment,
+    nombre varchar (30),
+    descripcion varchar(100),
+    cantidadAsistentes int (15),
+
+    equipamiento_id_fk int,
+    tipoActividad_id_fk int,
+
+    unique(equipamiento_id_fk),
+    unique(tipoActividad_id_fk),
+
+    primary key (id),
+    foreign key (equipamiento_id_fk) references equipamiento(id),
+    foreign key (tipoActividad_id_fk) references tipoActividad(id)
+)
+
+CREATE TABLE actividadEntrenador(
+    id int auto_increment,
+    entrenador_id_fk int,
+    actividad_id_fk int,
+
+    primary key (id),
+    foreign key (entrenador_id_fk) references entrenador(id),
+    foreign key (actividad_id_fk) references actividad(id)
+)
