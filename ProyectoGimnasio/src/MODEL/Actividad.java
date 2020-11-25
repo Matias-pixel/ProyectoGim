@@ -11,8 +11,8 @@ package MODEL;
  */
 public class Actividad {
     
-    String Nombre ,Descripción;
-    int id, Equipacion_ID, Entrenador_ID, TipoActividad_ID, CantidadAsistentes;
+    private String Nombre ,Descripción;
+    private int id, Equipacion_ID, Entrenador_ID, TipoActividad_ID, CantidadAsistentes;
 
     public String getNombre() {
         return Nombre;

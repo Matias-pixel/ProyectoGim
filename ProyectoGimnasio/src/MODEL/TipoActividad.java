@@ -11,8 +11,8 @@ package MODEL;
  */
 public class TipoActividad {
     
-    int id;
-    String Nombre;
+    private int id;
+    private String Nombre;
 
     public TipoActividad() {
     }
