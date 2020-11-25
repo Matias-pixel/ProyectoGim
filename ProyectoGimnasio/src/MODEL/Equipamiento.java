@@ -10,8 +10,8 @@ package MODEL;
  * @author Esteban V
  */
 public class Equipamiento {
-    String Nombre, Descripción;
-    int id, Tipo_equipamiento_ID;
+    private String Nombre, Descripción;
+    private int id, Tipo_equipamiento_ID;
 
     public Equipamiento() {
     }
@@ -47,6 +47,7 @@ public class Equipamiento {
     public void setTipo_equipamiento_ID(int Tipo_equipamiento_ID) {
         this.Tipo_equipamiento_ID = Tipo_equipamiento_ID;
     }
+
     
     
     

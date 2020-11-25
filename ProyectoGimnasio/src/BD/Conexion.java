@@ -1,4 +1,4 @@
-package bd;
+package BD;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.Connection; // heredar desde aca y crear una estructura correcta de conexion
