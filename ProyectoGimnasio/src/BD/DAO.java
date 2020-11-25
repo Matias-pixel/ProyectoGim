@@ -1,6 +1,7 @@
 
 package BD;
 
+import MODEL.Entrenador;
 import MODEL.Equipamiento;
 import MODEL.TipoEquipamiento;
 import java.sql.SQLException;// import para manejar excepciones SQL
@@ -102,6 +103,15 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
         return null;
     
 }
+    
+       public void InserTrainer(Entrenador oEntrenador) throws SQLException{
+    
+       sql="INSERT INTO entrenador VALUES (null,'"+oEntrenador.getRut()+"', '"+oEntrenador.getNombre()+"','"+oEntrenador.getApellido()+"', SHA2('"+oEntrenador.getPass()+"',0),'"+oEntrenador.getCorreo()+"' )";
+       oConexion.ejecutar(sql);
+       System.out.println(sql);     
+       
+    } 
+    
      
      
      
