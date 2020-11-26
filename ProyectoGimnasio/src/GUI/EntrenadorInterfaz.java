@@ -182,6 +182,12 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
             
             oDAO.InserTrainer(oEntrenador);
             
+            jtxt_nombre.setText("");
+            jtxt_rut.setText("");
+            jtxt_apellido.setText("");
+            jtxt_pass.setText("");
+            jtxt_correo.setText("");
+            
             lbl_msg.setText("REGISTRO CORRECTOAAAAAAAAAAAAAAAA");
             
         } catch (SQLException ex) {
