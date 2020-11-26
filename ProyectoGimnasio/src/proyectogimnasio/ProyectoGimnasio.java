@@ -23,6 +23,8 @@ public class ProyectoGimnasio {
         System.out.println("Hola amigos de yutu");
         
         System.out.println("Wena gente");
+        
+        System.out.println("golaaazooo");
 
     }
     
