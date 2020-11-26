@@ -9,6 +9,12 @@ CREATE TABLE tipoEquipamiento(
     primary key (id)
 )
 
+CREATE TABLE tipoUsuario(
+    id int auto_increment,
+    nombre varchar (20),
+	PRIMARY key (id)
+)
+
 CREATE TABLE equipamiento(
     id int auto_increment,
     nombre varchar (20),
@@ -19,16 +25,18 @@ CREATE TABLE equipamiento(
     foreign key(tipoEquipamiento_id_fk) references tipoEquipamiento(id)
 )
 
-CREATE TABLE entrenador(
+
+
+CREATE TABLE usuario(
     id int auto_increment,
     rut varchar (12),
     nombre varchar(20),
     apellido varchar (20),
     contrasena varchar(100),
     correo varchar(40),
-    unique (correo),
-
-    primary key (id)
+    tipoUsuario_id_fk int,
+    primary key (id),
+    foreign key (tipoUsuario_id_fk) REFERENCES tipoUsuario(id)
     
 )
 
@@ -36,10 +44,10 @@ CREATE TABLE entrenador(
 CREATE TABLE actividadesRealizadas(
     id int auto_increment,
     nombre varchar(30),
-    entrenador_id_fk int,
+    usuario_id_fk int,
 
     primary key (id),
-    foreign key (entrenador_id_fk) references entrenador (id)
+    foreign key (usuario_id_fk) references usuario (id)
 )
 
 CREATE TABLE tipoActividad(
@@ -54,25 +62,18 @@ CREATE TABLE actividad(
     id int auto_increment,
     nombre varchar (30),
     descripcion varchar(100),
-    cantidadCupos int (15),
+    cantidadAsistentes int (15),
 
     equipamiento_id_fk int,
     tipoActividad_id_fk int,
+    usuario_id_fk int,
 
     unique(equipamiento_id_fk),
     unique(tipoActividad_id_fk),
 
     primary key (id),
     foreign key (equipamiento_id_fk) references equipamiento(id),
-    foreign key (tipoActividad_id_fk) references tipoActividad(id)
+    foreign key (tipoActividad_id_fk) references tipoActividad(id),
+    foreign key (usuario_id_fk) references usuario(id)
 )
 
-CREATE TABLE actividadEntrenador(
-    id int auto_increment,
-    entrenador_id_fk int,
-    actividad_id_fk int,
-
-    primary key (id),
-    foreign key (entrenador_id_fk) references entrenador(id),
-    foreign key (actividad_id_fk) references actividad(id)
-)
