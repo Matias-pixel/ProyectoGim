@@ -3,6 +3,7 @@ package BD;
 
 import MODEL.Entrenador;
 import MODEL.Equipamiento;
+import MODEL.TipoActividad;
 import MODEL.TipoEquipamiento;
 import java.sql.SQLException;// import para manejar excepciones SQL
 import javax.swing.DefaultComboBoxModel;
@@ -111,13 +112,24 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        System.out.println(sql);     
        
     } 
-    
-     
-     
-     
-
-    
-    
+       
+       public void InsertTipoActividad(TipoActividad oTipoActividad ) throws SQLException{
+           String sql = "INSERT INTO tipoactividad values (null,'"+oTipoActividad.getNombre()+"')";
+           oConexion.ejecutar(sql);
+           System.out.println(sql);
+           
+       
+       }
+       
+       //REVISAR CON MÁS GANAS >:C
+       /*
+       public String login(String password) throws SQLException{
+           String sql = "SELECT contrasena FROM entrenador where nombre = '"+password+"'";
+           oConexion.ejecutar(sql);
+           return sql;
+       }
+*/
+ 
     
  
 }

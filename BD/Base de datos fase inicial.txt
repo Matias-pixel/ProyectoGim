@@ -26,6 +26,7 @@ CREATE TABLE entrenador(
     apellido varchar (20),
     contrasena varchar(100),
     correo varchar(40),
+    unique (correo),
 
     primary key (id)
     
@@ -53,7 +54,7 @@ CREATE TABLE actividad(
     id int auto_increment,
     nombre varchar (30),
     descripcion varchar(100),
-    cantidadAsistentes int (15),
+    cantidadCupos int (15),
 
     equipamiento_id_fk int,
     tipoActividad_id_fk int,

@@ -22,6 +22,10 @@ public class Conexion {
         
         con = mysql.getConnection();
     }
+
+    public Conexion() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     /**
     

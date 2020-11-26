@@ -242,6 +242,7 @@ public class EquipamientoInterfaz extends javax.swing.JFrame {
             TipoEquipamiento oTipoEquipamiento = new TipoEquipamiento();
             oTipoEquipamiento.setNombre(jtxt_nombre_TE.getText());
             oDAO.InsertTipoEquipamiento(oTipoEquipamiento);
+            
             lbl_msg_2.setText("Ingreso Correcto !");
             cbo_id_tipoequipamiento.setModel(oDAO.llenar_combobox());
             jTable1.setModel(oDAO.show_tipo_equipamiento());
