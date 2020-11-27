@@ -121,6 +121,28 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        
        }
        
+       public DefaultComboBoxModel llenar_comboboxTipoActividad () throws SQLException{
+  
+        sql="Select id from tipoActividad ";
+        oConexion.ejecutarSelect(sql);
+         System.out.println(sql);
+      
+        DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+        cbo_modelo.addElement("Selecciona el ID del Tipo de Actividad: ");
+    
+        try {
+                while (oConexion.rs.next()) {
+                    cbo_modelo.addElement(oConexion.rs.getString("ID"));
+                }
+                oConexion.rs.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    
+         return cbo_modelo;
+  
+  }
+       
        //REVISAR CON MÁS GANAS >:C
        /*
        public String login(String password) throws SQLException{

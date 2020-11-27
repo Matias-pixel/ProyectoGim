@@ -120,6 +120,11 @@ public class EquipamientoInterfaz extends javax.swing.JFrame {
                 cbo_id_tipoequipamientoMouseReleased(evt);
             }
         });
+        cbo_id_tipoequipamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_id_tipoequipamientoActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Tipo - Equipamiento");
 
@@ -301,8 +306,6 @@ public class EquipamientoInterfaz extends javax.swing.JFrame {
             
             oDAO.InsertEquipamiento(oEquipamiento);
             jtable_equipamiento.setModel(oDAO.show_equipamiento());
-
-            
             lbl_msg_1.setText("Registro Correcto!");
                     
         } catch (SQLException ex) {
@@ -318,6 +321,10 @@ public class EquipamientoInterfaz extends javax.swing.JFrame {
        oMenu.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_btn_menuActionPerformed
+
+    private void cbo_id_tipoequipamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_id_tipoequipamientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_id_tipoequipamientoActionPerformed
 
     /**
      * @param args the command line arguments
