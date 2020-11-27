@@ -5,14 +5,15 @@ use gimnasio;
 CREATE TABLE tipoEquipamiento(
     id int auto_increment,
     nombre varchar (20),
-
-    primary key (id)
+    primary key (id),
+    unique(nombre)
 )
 
 CREATE TABLE tipoUsuario(
     id int auto_increment,
     nombre varchar (20),
-	PRIMARY key (id)
+    PRIMARY key (id),
+    unique(nombre)
 )
 
 CREATE TABLE equipamiento(
