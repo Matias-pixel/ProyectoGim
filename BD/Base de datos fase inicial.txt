@@ -64,6 +64,7 @@ CREATE TABLE actividad(
     nombre varchar (30),
     descripcion varchar(100),
     cantidadAsistentes int (15),
+    fecha datetime,
 
     equipamiento_id_fk int,
     tipoActividad_id_fk int,

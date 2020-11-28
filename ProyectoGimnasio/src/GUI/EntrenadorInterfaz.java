@@ -6,7 +6,7 @@
 package GUI;
 
 import BD.DAO;
-import MODEL.Entrenador;
+import MODEL.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -185,7 +185,7 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
         
         try {
             DAO oDAO = new DAO();
-            Entrenador oEntrenador = new Entrenador();
+            Usuario oEntrenador = new Usuario();
             
             oEntrenador.setNombre(jtxt_nombre.getText());
             oEntrenador.setApellido(jtxt_apellido.getText());

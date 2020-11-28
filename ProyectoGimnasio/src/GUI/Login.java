@@ -7,7 +7,7 @@ package GUI;
 
 import BD.Conexion;
 import BD.DAO;
-import MODEL.Entrenador;
+import MODEL.Usuario;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -137,17 +137,11 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usuarioActionPerformed
 
     private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
-/*
-        try {
-            DAO oDAO = new DAO();
-             String usuario = txt_usuario.getText();
-            String password = pss_usuario.getText();
-            
-            String contraseña = oDAO.login(password);
-            System.out.println(contraseña);
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+         String usuario = txt_usuario.getText().trim();
+         String password = new String(pss_usuario.getPassword());
+         
+         System.out.println(usuario);
+         System.out.println(password);
     }//GEN-LAST:event_btn_verificarActionPerformed
   
     private void btn_verificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verificarMouseClicked
