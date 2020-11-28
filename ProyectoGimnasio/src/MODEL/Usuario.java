@@ -9,12 +9,29 @@ package MODEL;
  *
  * @author Esteban V
  */
-public class Entrenador {
+public class Usuario {
     private String Rut,Nombre,Apellido,Pass,Correo;
-    private int id;
+    private int id , tipoUsuario_id_fk;
 
-    public Entrenador() {
+    public Usuario() {
     }
+
+    public Usuario(int id, String Nombre, String Pass) {
+        this.Nombre = Nombre;
+        this.Pass = Pass;
+        this.id = id;
+    }
+
+    public int getTipoUsuario_id_fk() {
+        return tipoUsuario_id_fk;
+    }
+
+    public void setTipoUsuario_id_fk(int tipoUsuario_id_fk) {
+        this.tipoUsuario_id_fk = tipoUsuario_id_fk;
+    }
+    
+    
+    
 
     public String getRut() {
         return Rut;

@@ -1,10 +1,11 @@
 
 package BD;
 
-import MODEL.Entrenador;
+import MODEL.Usuario;
 import MODEL.Equipamiento;
 import MODEL.TipoActividad;
 import MODEL.TipoEquipamiento;
+import java.sql.ResultSet;
 import java.sql.SQLException;// import para manejar excepciones SQL
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
@@ -105,7 +106,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
     
 }
     
-       public void InserTrainer(Entrenador oEntrenador) throws SQLException{
+       public void InserTrainer(Usuario oEntrenador) throws SQLException{
     
        sql="INSERT INTO entrenador VALUES (null,'"+oEntrenador.getRut()+"', '"+oEntrenador.getNombre()+"','"+oEntrenador.getApellido()+"', SHA2('"+oEntrenador.getPass()+"',0),'"+oEntrenador.getCorreo()+"' )";
        oConexion.ejecutar(sql);
@@ -121,14 +122,43 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        
        }
        
-       //REVISAR CON MÁS GANAS >:C
-       /*
-       public String login(String password) throws SQLException{
-           String sql = "SELECT contrasena FROM entrenador where nombre = '"+password+"'";
-           oConexion.ejecutar(sql);
-           return sql;
+       public DefaultComboBoxModel llenar_comboboxTipoActividad () throws SQLException{
+  
+        sql="Select id from tipoActividad ";
+        oConexion.ejecutarSelect(sql);
+         System.out.println(sql);
+      
+        DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+        cbo_modelo.addElement("Selecciona el ID del Tipo de Actividad: ");
+    
+        try {
+                while (oConexion.rs.next()) {
+                    cbo_modelo.addElement(oConexion.rs.getString("ID"));
+                }
+                oConexion.rs.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    
+         return cbo_modelo;
+  
+  }
+       public boolean isEntrenadorisValid(Usuario oUsuario){
+           String sql = "SELECT COUNT(*) AS 'existe' FROM entrenador WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0); ";
+           try {
+               ResultSet resultado = oConexion.ejecutarSelect(sql);
+               if(resultado.next()){
+                   return resultado.getInt("existe") == 1;
+               }
+               
+           } catch (SQLException e) {
+                System.out.println(e);
+           }
+           return false;
        }
-*/
+       
+       
+
  
     
  

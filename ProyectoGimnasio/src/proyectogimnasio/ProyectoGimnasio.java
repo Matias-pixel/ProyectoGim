@@ -25,6 +25,11 @@ public class ProyectoGimnasio {
         System.out.println("Wena gente");
         
         System.out.println("golaaazooo");
+        
+        
+        
+        
+        
 
     }
     
