@@ -77,3 +77,18 @@ CREATE TABLE actividad(
     foreign key (usuario_id_fk) references usuario(id)
 )
 
+
+######  TRIGGER 1  ######
+
+DELIMITER //
+CREATE TRIGGER gatito AFTER INSERT ON actividades
+FOR EACH ROW
+BEGIN
+    INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.usuario_id_fk);
+
+END //
+DELIMITER ;
+
+########################
+
+
