@@ -16,10 +16,9 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(int id, String Nombre, String Pass) {
+    public Usuario(String Nombre, String Pass) {
         this.Nombre = Nombre;
         this.Pass = Pass;
-        this.id = id;
     }
 
     public int getTipoUsuario_id_fk() {

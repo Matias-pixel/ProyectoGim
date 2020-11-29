@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,6 +24,7 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
+        
         
         
         
@@ -137,11 +139,28 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usuarioActionPerformed
 
     private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
-         String usuario = txt_usuario.getText().trim();
-         String password = new String(pss_usuario.getPassword());
-         
-         System.out.println(usuario);
-         System.out.println(password);
+         try {
+              String usuario = txt_usuario.getText().trim();
+              String password = new String(pss_usuario.getPassword());
+              Usuario oUsuario = new Usuario(usuario,password);
+              DAO oDAO = new DAO();
+              
+              
+              if(usuario.isEmpty() || password.isEmpty()){
+                  JOptionPane.showMessageDialog(this, "Los campos están vacios");
+              }else{
+                  if(oDAO.isEntrenadorisValid(oUsuario)){
+                      JOptionPane.showMessageDialog(this, "WENA");
+                  }else{
+                      JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
+                  }
+              }
+            
+        } catch (SQLException e) {
+             System.out.println(e);
+        }
+       
+        
     }//GEN-LAST:event_btn_verificarActionPerformed
   
     private void btn_verificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verificarMouseClicked
