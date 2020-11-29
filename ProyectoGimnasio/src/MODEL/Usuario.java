@@ -14,6 +14,7 @@ public class Usuario {
     private int id , tipoUsuario_id_fk;
 
     public Usuario() {
+        
     }
 
     public Usuario(String Nombre, String Pass) {

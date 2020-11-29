@@ -143,24 +143,23 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
   
   }
        public boolean isEntrenadorisValid(Usuario oUsuario){
-           String sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0); ";
+           String sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if(resultado.next()){
                    return resultado.getInt("existe") == 1;
-               }
-               
+               } 
            } catch (SQLException e) {
                 System.out.println(e);
            }
            return false;
        }
        public int obtenerUsuarioId(String nombre){
-           String sql ="SELECT id FROM usuario WHERE nombre = '"+nombre+"'";
+           String sql ="Select tipoUsuario_id_fk as 'Tipo'  from usuario where nombre = '"+nombre+"';";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if (resultado.next()){
-                   return resultado.getInt("id");
+                   return resultado.getInt("Tipo");
                }
            } catch (SQLException e) {
                System.out.println(e);
@@ -169,13 +168,13 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        }
        
        public int isAdmin (Usuario oUsuario){
-            sql = "SELECT tipoUsuario_id_fk FROM usuario WHERE id = '"+oUsuario.getTipoUsuario_id_fk()+"'";
+            String sql = "SELECT tipoUsuario_id_fk as 'tipo' FROM usuario where id = '"+oUsuario.getTipoUsuario_id_fk()+"'";
             try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if(resultado.next()){
-                   return resultado.getInt("tipoUsuario_id_fk");
+                   return resultado.getInt("tipo");
                }
-           } catch (Exception e) {
+           } catch (SQLException e) {
                 System.out.println(e);
            }
         return 0;

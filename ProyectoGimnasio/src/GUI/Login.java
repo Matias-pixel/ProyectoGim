@@ -159,7 +159,16 @@ public class Login extends javax.swing.JFrame {
                   JOptionPane.showMessageDialog(this, "Los campos están vacios");
               }else{
                   if(oDAO.isEntrenadorisValid(oUsuario)){
-                      JOptionPane.showMessageDialog(this, "WENA");
+                      int adminOrEntrenador = oDAO.obtenerUsuarioId(usuario);
+                      if(adminOrEntrenador == 1){
+                          //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ADMIN
+                          JOptionPane.showMessageDialog(this,"Usted es administrador");
+                      }else{
+                          //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ENTRENADOR
+                          JOptionPane.showMessageDialog(this, "Usted es Entrenador");
+                      }
+                      
+                      
                   }else{
                       JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                   }
