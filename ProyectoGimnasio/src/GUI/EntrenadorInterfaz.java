@@ -10,6 +10,7 @@ import MODEL.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,9 +50,32 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btn_menu = new javax.swing.JButton();
-        lbl_msg = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        ACTUALIZAR = new javax.swing.JButton();
+        jtxt_Upass = new javax.swing.JTextField();
+        pass = new javax.swing.JLabel();
+        jtxt_Ucorreo = new javax.swing.JTextField();
+        correo = new javax.swing.JLabel();
+        jtxt_rut1 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        btn_buscar = new javax.swing.JButton();
+        jtxt_Unombre = new javax.swing.JTextField();
+        name = new javax.swing.JLabel();
+        jtxt_Uapellido = new javax.swing.JTextField();
+        apellido = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btn_eliminar = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cbo_rut_delete = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -144,6 +168,136 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        ACTUALIZAR.setText("ACTUALIZAR");
+        ACTUALIZAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACTUALIZARActionPerformed(evt);
+            }
+        });
+
+        pass.setText("Contraseña");
+
+        correo.setText("Correo");
+
+        jLabel11.setText("Rut");
+
+        jLabel12.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel12.setFont(new java.awt.Font("Bebas", 0, 12)); // NOI18N
+        jLabel12.setText("ACTUALIZAR ENTRENADOR");
+
+        btn_buscar.setText("BUSCAR");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+
+        jtxt_Unombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxt_UnombreActionPerformed(evt);
+            }
+        });
+
+        name.setText("Nombre");
+
+        apellido.setText("Apellidos");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addComponent(jtxt_rut1)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxt_Ucorreo)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxt_Upass)
+                    .addComponent(ACTUALIZAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtxt_Unombre)
+                    .addComponent(jtxt_Uapellido))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtxt_rut1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(name)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxt_Unombre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(apellido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxt_Uapellido, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(correo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtxt_Ucorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pass)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtxt_Upass, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(ACTUALIZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        btn_eliminar.setText("ELIMINAR");
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Rut");
+
+        jLabel14.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel14.setFont(new java.awt.Font("Bebas", 0, 12)); // NOI18N
+        jLabel14.setText("ELMINAR  ENTRENADOR");
+
+        cbo_rut_delete.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbo_rut_delete, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbo_rut_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -151,19 +305,20 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(lbl_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(388, 388, 388)
-                .addComponent(lbl_msg, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -171,11 +326,15 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,14 +353,16 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
             oEntrenador.setPass(jtxt_pass.getText());
             
             oDAO.InserTrainer(oEntrenador);
-            
+            cbo_rut_delete.setModel(oDAO.llenar_combobox_trainer());
+
             jtxt_nombre.setText("");
             jtxt_rut.setText("");
             jtxt_apellido.setText("");
             jtxt_pass.setText("");
             jtxt_correo.setText("");
             
-            lbl_msg.setText("REGISTRO CORRECTOAAAAAAAAAAAAAAAA");
+        JOptionPane.showMessageDialog(null, "SE AÑADIÓ UN NUEVO ENTRENADOR");
+
             
         } catch (SQLException ex) {
             Logger.getLogger(EntrenadorInterfaz.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,6 +381,104 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
         oMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btn_menuActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+     
+        try {
+            DAO oDAO = new DAO();
+            Usuario oUsuario = new Usuario();
+            
+            oUsuario.setRut(jtxt_rut1.getText());
+            oDAO.sett_campos_trainer(oUsuario);
+            
+            jtxt_Uapellido.setText(oUsuario.getApellido());
+            jtxt_Ucorreo.setText(oUsuario.getCorreo());
+            jtxt_Upass.setText(oUsuario.getPass());
+            jtxt_Unombre.setText(oUsuario.getNombre());
+
+
+            name.setVisible(true);
+            apellido.setVisible(true);
+            pass.setVisible(true);
+            correo.setVisible(true);
+            
+            jtxt_Uapellido.setVisible(true);
+            jtxt_Ucorreo.setVisible(true);
+            jtxt_Unombre.setVisible(true);
+            jtxt_Upass.setVisible(true);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EntrenadorInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
+        try {
+            DAO oDAO = new DAO();
+            cbo_rut_delete.setModel(oDAO.llenar_combobox_trainer());
+        } catch (SQLException ex) {
+            Logger.getLogger(EntrenadorInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        jtxt_Uapellido.setVisible(false);
+        jtxt_Ucorreo.setVisible(false);
+        jtxt_Unombre.setVisible(false);
+        jtxt_Upass.setVisible(false);
+        
+        name.setVisible(false);
+        apellido.setVisible(false);
+        pass.setVisible(false);
+        correo.setVisible(false);
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        try {
+            DAO oDAO = new DAO();
+            Usuario oUsuario = new Usuario();
+            
+            oUsuario.setRut(""+cbo_rut_delete.getSelectedItem());
+            oDAO.DeleteTrainer(oUsuario);
+            JOptionPane.showMessageDialog(null, "SE ELIMINO EL RUT " +cbo_rut_delete.getSelectedItem());
+
+            cbo_rut_delete.setModel(oDAO.llenar_combobox_trainer());
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EntrenadorInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+       
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void ACTUALIZARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACTUALIZARActionPerformed
+        try {
+            DAO oDAO = new DAO();
+            Usuario oUsuario = new Usuario();
+
+            oUsuario.setApellido(jtxt_Uapellido.getText());
+            oUsuario.setNombre(jtxt_Unombre.getText());
+            oUsuario.setCorreo(jtxt_Ucorreo.getText());
+            oUsuario.setPass(jtxt_Upass.getText());
+            oUsuario.setRut(jtxt_rut1.getText());
+
+            oDAO.updateTrainer(oUsuario);
+            
+            JOptionPane.showMessageDialog(null, "SE ACTUALIZÓ EL ENTRENADOR DEL RUT "+ jtxt_rut1.getText());
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntrenadorInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_ACTUALIZARActionPerformed
+
+    private void jtxt_UnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxt_UnombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxt_UnombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,9 +517,19 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ACTUALIZAR;
+    private javax.swing.JLabel apellido;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_menu;
+    private javax.swing.JComboBox<String> cbo_rut_delete;
+    private javax.swing.JLabel correo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -268,11 +537,19 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField jtxt_Uapellido;
+    private javax.swing.JTextField jtxt_Ucorreo;
+    private javax.swing.JTextField jtxt_Unombre;
+    private javax.swing.JTextField jtxt_Upass;
     private javax.swing.JTextField jtxt_apellido;
     private javax.swing.JTextField jtxt_correo;
     private javax.swing.JTextField jtxt_nombre;
     private javax.swing.JTextField jtxt_pass;
     private javax.swing.JTextField jtxt_rut;
-    private javax.swing.JLabel lbl_msg;
+    private javax.swing.JTextField jtxt_rut1;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel pass;
     // End of variables declaration//GEN-END:variables
 }
