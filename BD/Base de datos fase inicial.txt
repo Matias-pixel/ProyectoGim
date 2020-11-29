@@ -70,7 +70,7 @@ CREATE TABLE actividad(
     tipoActividad_id_fk int,
     usuario_id_fk int,
 
-    unique(equipamiento_id_fk),
+   
     unique(tipoActividad_id_fk),
 
     primary key (id),
