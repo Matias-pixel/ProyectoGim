@@ -108,7 +108,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
     
        public void InserTrainer(Usuario oEntrenador) throws SQLException{
     
-       sql="INSERT INTO entrenador VALUES (null,'"+oEntrenador.getRut()+"', '"+oEntrenador.getNombre()+"','"+oEntrenador.getApellido()+"', SHA2('"+oEntrenador.getPass()+"',0),'"+oEntrenador.getCorreo()+"' )";
+       sql="INSERT INTO usuario VALUES (null,'"+oEntrenador.getRut()+"', '"+oEntrenador.getNombre()+"','"+oEntrenador.getApellido()+"', SHA2('"+oEntrenador.getPass()+"',0),'"+oEntrenador.getCorreo()+"',2 )";
        oConexion.ejecutar(sql);
        System.out.println(sql);     
        
@@ -180,14 +180,70 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
            }
         return 0;
        }
-       
-       
-       
-       
-       
-       
 
  
+public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
+  
+    sql="Select correo, nombre, apellido,contrasena from usuario where rut='"+oUsuario.getRut()+"' ";
+    oConexion.ejecutarSelect(sql);
     
+    while (oConexion.rs.next()) {
+         oUsuario.setCorreo(oConexion.rs.getString("Correo"));
+         oUsuario.setNombre(oConexion.rs.getString("nombre"));
+         oUsuario.setApellido(oConexion.rs.getString("apellido"));
+         oUsuario.setPass(oConexion.rs.getString("Contrasena"));
+    }
+    
+  
+  }
+
+    public void updateTrainer(Usuario oUsuario) throws SQLException{
+  
+         
+       sql="UPDATE usuario SET nombre='"+oUsuario.getNombre()+"',apellido='"+oUsuario.getApellido()+"', contrasena=SHA2('"+oUsuario.getPass()+"',0), correo='"+oUsuario.getCorreo()+"' WHERE RUT='"+oUsuario.getRut()+"' ";
+       oConexion.ejecutar(sql);
+       System.out.println(sql);
+  
+  
+  
+    }
+    
+    
+    public void DeleteTrainer(Usuario oUsuario) throws SQLException{
+  
+         
+       sql="DELETE FROM usuario WHERE RUT='"+oUsuario.getRut()+"' ";
+       oConexion.ejecutar(sql);
+       System.out.println(sql);
+  
+  
+  
+    }
+  
+    
+    public DefaultComboBoxModel llenar_combobox_trainer () throws SQLException{
+  
+    sql="Select rut from usuario where tipoUsuario_id_fk = 2";
+    oConexion.ejecutarSelect(sql);
+    System.out.println(sql);
+      
+    DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+    cbo_modelo.addElement("Selecciona el RUT a eliminar: ");
+    
+    try {
+            while (oConexion.rs.next()) {
+                cbo_modelo.addElement(oConexion.rs.getString("RUT"));
+            }
+            oConexion.rs.close();
+    } catch (Exception e) {
+          System.out.println(e);
+    }
+    
+    return cbo_modelo;
+  
+  }
  
 }
+
+
+
