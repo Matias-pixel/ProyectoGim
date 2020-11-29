@@ -3,7 +3,6 @@ package BD;
 
 import MODEL.Usuario;
 import MODEL.Equipamiento;
-import MODEL.TipoActividad;
 import MODEL.TipoEquipamiento;
 import java.sql.ResultSet;
 import java.sql.SQLException;// import para manejar excepciones SQL
@@ -12,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class DAO {
 
-    private Conexion oConexion;//se crea sin inicializar el objeto como atributo de la Clase DAO
+    private final Conexion oConexion;//se crea sin inicializar el objeto como atributo de la Clase DAO
     private String sql;// se crea una variable String para almacenar la consulta temporalmente
     /*
      constructor de DAO
@@ -49,7 +48,7 @@ public class DAO {
         modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE")});
         }
         return modelo;
-    } catch (Exception e) {
+    } catch (SQLException e) {
         System.out.println(e);
     }
         return null;
@@ -78,7 +77,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
                 cbo_modelo.addElement(oConexion.rs.getString("ID"));
             }
             oConexion.rs.close();
-    } catch (Exception e) {
+    } catch (SQLException e) {
           System.out.println(e);
     }
     
@@ -99,7 +98,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
         modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION")});
         }
         return modelo;
-    } catch (Exception e) {
+    } catch (SQLException e) {
         System.out.println(e);
     }
         return null;
@@ -114,8 +113,8 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        
     } 
        
-       public void InsertTipoActividad(TipoActividad oTipoActividad ) throws SQLException{
-           String sql = "INSERT INTO tipoactividad values (null,'"+oTipoActividad.getNombre()+"')";
+       public void InsertTipoActividad(String text ) throws SQLException{
+           sql = "INSERT INTO tipoactividad values (null,'"+text+"')";
            oConexion.ejecutar(sql);
            System.out.println(sql);
            
@@ -130,20 +129,20 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
       
         DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
         cbo_modelo.addElement("Selecciona el ID del Tipo de Actividad: ");
-    
+        
         try {
             while (oConexion.rs.next()) {
-                cbo_modelo.addElement(oConexion.rs.getString("ID"));
+                cbo_modelo.addElement(oConexion.rs.getString("id"));
             }
             oConexion.rs.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
          return cbo_modelo;
   
   }
        public boolean isEntrenadorisValid(Usuario oUsuario){
-           String sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
+           sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if(resultado.next()){
@@ -155,7 +154,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
            return false;
        }
        public int obtenerUsuarioId(String nombre){
-           String sql ="Select tipoUsuario_id_fk as 'Tipo'  from usuario where nombre = '"+nombre+"';";
+           sql ="Select tipoUsuario_id_fk as 'Tipo'  from usuario where nombre = '"+nombre+"';";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if (resultado.next()){
@@ -168,7 +167,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        }
        
        public int isAdmin (Usuario oUsuario){
-            String sql = "SELECT tipoUsuario_id_fk as 'tipo' FROM usuario where id = '"+oUsuario.getTipoUsuario_id_fk()+"'";
+            sql = "SELECT tipoUsuario_id_fk as 'tipo' FROM usuario where id = '"+oUsuario.getTipoUsuario_id_fk()+"'";
             try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if(resultado.next()){
@@ -209,38 +208,49 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     
     public void DeleteTrainer(Usuario oUsuario) throws SQLException{
-  
-         
        sql="DELETE FROM usuario WHERE RUT='"+oUsuario.getRut()+"' ";
        oConexion.ejecutar(sql);
        System.out.println(sql);
-  
-  
-  
     }
   
     
     public DefaultComboBoxModel llenar_combobox_trainer () throws SQLException{
-  
     sql="Select rut from usuario where tipoUsuario_id_fk = 2";
     oConexion.ejecutarSelect(sql);
     System.out.println(sql);
-      
     DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
     cbo_modelo.addElement("Selecciona el RUT a eliminar: ");
-    
     try {
-            while (oConexion.rs.next()) {
-                cbo_modelo.addElement(oConexion.rs.getString("RUT"));
-            }
-            oConexion.rs.close();
-    } catch (Exception e) {
+        while (oConexion.rs.next()) {
+            cbo_modelo.addElement(oConexion.rs.getString("RUT"));
+        }
+        oConexion.rs.close();
+    } catch (SQLException e) {
           System.out.println(e);
     }
-    
     return cbo_modelo;
-  
   }
+    
+    public DefaultTableModel show_tipo_actividad() throws SQLException{
+    
+    sql="Select * from tipoactividad ORDER BY id, nombre ASC";
+    oConexion.ejecutarSelect(sql);
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("nombre")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
+    
+   
  
 }
 

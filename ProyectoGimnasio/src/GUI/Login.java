@@ -24,12 +24,8 @@ public class Login extends javax.swing.JFrame {
     
     public Login() {
         initComponents();
-        
-        
-        
-        
-        
-        
+        this.setLocationRelativeTo(null);
+        this.pack();
     }
 
     /**
@@ -162,10 +158,14 @@ public class Login extends javax.swing.JFrame {
                       int adminOrEntrenador = oDAO.obtenerUsuarioId(usuario);
                       if(adminOrEntrenador == 1){
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ADMIN
-                          JOptionPane.showMessageDialog(this,"Usted es administrador");
+                          Menu oMenu = new Menu();
+                          oMenu.setVisible(true);
+                          this.dispose();
                       }else{
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ENTRENADOR
-                          JOptionPane.showMessageDialog(this, "Usted es Entrenador");
+                          MenuTrainer oMenuTrainer = new MenuTrainer();
+                          oMenuTrainer.setVisible(true);
+                          this.dispose();
                       }
                       
                       
@@ -196,7 +196,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
