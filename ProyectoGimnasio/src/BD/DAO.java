@@ -132,14 +132,13 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
         cbo_modelo.addElement("Selecciona el ID del Tipo de Actividad: ");
     
         try {
-                while (oConexion.rs.next()) {
-                    cbo_modelo.addElement(oConexion.rs.getString("ID"));
-                }
-                oConexion.rs.close();
+            while (oConexion.rs.next()) {
+                cbo_modelo.addElement(oConexion.rs.getString("ID"));
+            }
+            oConexion.rs.close();
         } catch (Exception e) {
             System.out.println(e);
         }
-    
          return cbo_modelo;
   
   }
@@ -167,6 +166,19 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
                System.out.println(e);
            }
         return 0;  
+       }
+       
+       public int isAdmin (Usuario oUsuario){
+            sql = "SELECT tipoUsuario_id_fk FROM usuario WHERE id = '"+oUsuario.getTipoUsuario_id_fk()+"'";
+            try {
+               ResultSet resultado = oConexion.ejecutarSelect(sql);
+               if(resultado.next()){
+                   return resultado.getInt("tipoUsuario_id_fk");
+               }
+           } catch (Exception e) {
+                System.out.println(e);
+           }
+        return 0;
        }
        
        
