@@ -253,9 +253,9 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
         return null;
     
 }
-    public DefaultComboBoxModel llenar_combobox_quipamiento () throws SQLException{
+    public DefaultComboBoxModel llenar_combobox_equipamiento () throws SQLException{
   
-    sql="Select nombre from tipoequipamiento ";
+    sql="Select id from equipamiento ";
     oConexion.ejecutarSelect(sql);
     
       
@@ -264,7 +264,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     try {
             while (oConexion.rs.next()) {
-                cbo_modelo.addElement(oConexion.rs.getString("nombre"));
+                cbo_modelo.addElement(oConexion.rs.getString("id"));
             }
             oConexion.rs.close();
     } catch (SQLException e) {
@@ -282,23 +282,22 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     public DefaultTableModel show_actividad() throws SQLException{
     
-    sql="Select ID, NOMBRE, DESCRIPCION, cupos,fecha,equipamiento_id_fk,tipoActividad_id_fk,usuario_id_fk from actividad";
+    sql="Select * from actividad";
     oConexion.ejecutarSelect(sql);
     System.out.println(sql);
 
     DefaultTableModel modelo = new DefaultTableModel();
     modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción","Cupos","fecha","equipamiento","tipo","Entrenador"});
+    
     try {
         while (oConexion.rs.next()) {
-        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION")});
+        modelo.addRow(new Object[]{oConexion.rs.getInt("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getInt("equipamiento_id_fk "),oConexion.rs.getInt("tipoActividad_id_fk "),oConexion.rs.getInt("usuario_id_fk ")});
         }
         return modelo;
     } catch (SQLException e) {
         System.out.println(e);
     }
         return null;
-    
-
 }
    
 
