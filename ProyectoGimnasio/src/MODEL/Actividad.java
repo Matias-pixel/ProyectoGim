@@ -10,6 +10,8 @@ package MODEL;
  * @author Esteban V
  */
 public class Actividad {
+
+   
     
     private String Nombre ,Descripción;
     private int id, Equipacion_ID, Entrenador_ID, TipoActividad_ID, Cupos;
