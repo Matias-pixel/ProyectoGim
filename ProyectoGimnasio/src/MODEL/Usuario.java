@@ -13,8 +13,10 @@ public class Usuario {
     private String Rut,Nombre,Apellido,Pass,Correo;
     private int id , tipoUsuario_id_fk;
 
-    public Usuario() {
-        
+    public Usuario(int id, String nombre, String Pass) {
+        this.id = id;
+        this.Nombre = nombre;
+        this.Pass = Pass;
     }
 
     public Usuario(String Nombre, String Pass) {

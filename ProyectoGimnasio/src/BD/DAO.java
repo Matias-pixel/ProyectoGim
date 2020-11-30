@@ -291,7 +291,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     try {
         while (oConexion.rs.next()) {
-        modelo.addRow(new Object[]{oConexion.rs.getInt("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getInt("equipamiento_id_fk "),oConexion.rs.getInt("tipoActividad_id_fk "),oConexion.rs.getInt("usuario_id_fk ")});
+        modelo.addRow(new Object[]{oConexion.rs.getInt("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getInt("equipamiento_id_fk"),oConexion.rs.getInt("tipoActividad_id_fk"),oConexion.rs.getInt("usuario_id_fk")});
         }
         return modelo;
     } catch (SQLException e) {
