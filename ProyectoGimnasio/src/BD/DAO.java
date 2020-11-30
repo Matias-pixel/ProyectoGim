@@ -62,7 +62,7 @@ public class DAO {
     
     public void insertEquipamiento(Equipamiento oEquipamiento) throws SQLException{
     
-       sql="INSERT INTO equipamiento VALUES (null,'"+oEquipamiento.getNombre()+"','"+oEquipamiento.getDescripción()+"',"+oEquipamiento.getTipo_equipamiento_ID()+")";
+       sql="INSERT INTO equipamiento VALUES (null,'"+oEquipamiento.getNombre()+"','"+oEquipamiento.getDescripción()+"',"+oEquipamiento.getCantidad()+","+oEquipamiento.getTipo_equipamiento_ID()+")";
        oConexion.ejecutar(sql);
        System.out.println(sql);     
        
@@ -92,15 +92,15 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
 
     public DefaultTableModel show_equipamiento() throws SQLException{
     
-    sql="Select ID, NOMBRE, DESCRIPCION from equipamiento";
+    sql="Select ID, NOMBRE, DESCRIPCION, cantidad from equipamiento";
     oConexion.ejecutarSelect(sql);
     System.out.println(sql);
 
     DefaultTableModel modelo = new DefaultTableModel();
-    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción"});
+    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción","Cantidad"});
     try {
         while (oConexion.rs.next()) {
-        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION")});
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cantidad")});
         }
         return modelo;
     } catch (SQLException e) {
@@ -322,6 +322,28 @@ public DefaultTableModel show_equip_orden(int param) throws SQLException{
 }
     
     
+public DefaultTableModel show_actividades_bituin(String fecha1, String fecha2) throws SQLException{
+    
+    sql="CALL calculos_fecha_entre("+fecha1+","+fecha2+")";
+    oConexion.ejecutarSelect(sql);
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"NOMBRE","DESCRIPCIÓN","FECHA","ENTRENADOR"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("VECES USADA")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
+
+
+
+
 
  
 }
