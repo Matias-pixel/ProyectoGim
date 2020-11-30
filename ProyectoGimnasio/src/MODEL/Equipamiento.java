@@ -11,7 +11,7 @@ package MODEL;
  */
 public class Equipamiento {
     private String Nombre, Descripción;
-    private int id, Tipo_equipamiento_ID;
+    private int id, Tipo_equipamiento_ID, cantidad;
 
     public Equipamiento() {
     }
@@ -46,6 +46,14 @@ public class Equipamiento {
 
     public void setTipo_equipamiento_ID(int Tipo_equipamiento_ID) {
         this.Tipo_equipamiento_ID = Tipo_equipamiento_ID;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     
