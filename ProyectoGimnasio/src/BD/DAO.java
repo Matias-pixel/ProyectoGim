@@ -1,7 +1,11 @@
 
 package BD;
 
+
 import MODEL.Actividad;
+
+import GUI.EquipUsados;
+
 import MODEL.Usuario;
 import MODEL.Equipamiento;
 import MODEL.TipoEquipamiento;
@@ -294,8 +298,31 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     }
         return null;
     
+
 }
    
+
+public DefaultTableModel show_equip_orden(int param) throws SQLException{
+    
+    sql="CALL equipamiento_mas_usados("+param+")";
+    oConexion.ejecutarSelect(sql);
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"NOMBRE","VECES USADA"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("VECES USADA")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
+    
+    
+
  
 }
 
