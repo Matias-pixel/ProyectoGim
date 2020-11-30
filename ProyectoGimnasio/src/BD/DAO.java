@@ -1,6 +1,7 @@
 
 package BD;
 
+import MODEL.Actividad;
 import MODEL.Usuario;
 import MODEL.Equipamiento;
 import MODEL.TipoEquipamiento;
@@ -27,7 +28,7 @@ public class DAO {
         
     }
 
-    public void InsertTipoEquipamiento(TipoEquipamiento oTipoEquipamiento) throws SQLException{
+    public void insertTipoEquipamiento(TipoEquipamiento oTipoEquipamiento) throws SQLException{
     
        sql="INSERT INTO tipoequipamiento VALUES (null,'"+oTipoEquipamiento.getNombre()+"')";
        oConexion.ejecutar(sql);
@@ -55,7 +56,7 @@ public class DAO {
     
 }
     
-    public void InsertEquipamiento(Equipamiento oEquipamiento) throws SQLException{
+    public void insertEquipamiento(Equipamiento oEquipamiento) throws SQLException{
     
        sql="INSERT INTO equipamiento VALUES (null,'"+oEquipamiento.getNombre()+"','"+oEquipamiento.getDescripción()+"',"+oEquipamiento.getTipo_equipamiento_ID()+")";
        oConexion.ejecutar(sql);
@@ -105,7 +106,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
     
 }
     
-       public void InserTrainer(Usuario oEntrenador) throws SQLException{
+       public void inserTrainer(Usuario oEntrenador) throws SQLException{
     
        sql="INSERT INTO usuario VALUES (null,'"+oEntrenador.getRut()+"', '"+oEntrenador.getNombre()+"','"+oEntrenador.getApellido()+"', SHA2('"+oEntrenador.getPass()+"',0),'"+oEntrenador.getCorreo()+"',2 )";
        oConexion.ejecutar(sql);
@@ -113,7 +114,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        
     } 
        
-       public void InsertTipoActividad(String text ) throws SQLException{
+       public void insertTipoActividad(String text ) throws SQLException{
            sql = "INSERT INTO tipoactividad values (null,'"+text+"')";
            oConexion.ejecutar(sql);
            System.out.println(sql);
@@ -207,7 +208,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     }
     
     
-    public void DeleteTrainer(Usuario oUsuario) throws SQLException{
+    public void deleteTrainer(Usuario oUsuario) throws SQLException{
        sql="DELETE FROM usuario WHERE RUT='"+oUsuario.getRut()+"' ";
        oConexion.ejecutar(sql);
        System.out.println(sql);
@@ -235,7 +236,6 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     sql="Select * from tipoactividad ORDER BY id, nombre ASC";
     oConexion.ejecutarSelect(sql);
-    
     DefaultTableModel modelo = new DefaultTableModel();
     modelo.setColumnIdentifiers(new Object[]{"ID","Nombre"});
     try {
@@ -249,7 +249,52 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
         return null;
     
 }
+    public DefaultComboBoxModel llenar_combobox_quipamiento () throws SQLException{
+  
+    sql="Select nombre from tipoequipamiento ";
+    oConexion.ejecutarSelect(sql);
     
+      
+    DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+    cbo_modelo.addElement("Selecciona el nombre de un equipamiento: ");
+    
+    try {
+            while (oConexion.rs.next()) {
+                cbo_modelo.addElement(oConexion.rs.getString("nombre"));
+            }
+            oConexion.rs.close();
+    } catch (SQLException e) {
+          System.out.println(e);
+    }
+    return cbo_modelo;
+  }
+    
+    public void insertActividad(Actividad oActividad) throws SQLException{
+        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"',now(),1)";
+        oConexion.ejecutar(sql);
+    
+    }
+    
+    
+    public DefaultTableModel show_actividad() throws SQLException{
+    
+    sql="Select ID, NOMBRE, DESCRIPCION, cupos,fecha,equipamiento_id_fk,tipoActividad_id_fk,usuario_id_fk from actividad";
+    oConexion.ejecutarSelect(sql);
+    System.out.println(sql);
+
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción","Cupos","fecha","equipamiento","tipo","Entrenador"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
    
  
 }

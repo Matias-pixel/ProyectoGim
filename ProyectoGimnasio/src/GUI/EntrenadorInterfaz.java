@@ -352,7 +352,7 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
             oEntrenador.setCorreo(jtxt_correo.getText());
             oEntrenador.setPass(jtxt_pass.getText());
             
-            oDAO.InserTrainer(oEntrenador);
+            oDAO.inserTrainer(oEntrenador);
             cbo_rut_delete.setModel(oDAO.llenar_combobox_trainer());
 
             jtxt_nombre.setText("");
@@ -441,7 +441,7 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
             Usuario oUsuario = new Usuario();
             
             oUsuario.setRut(""+cbo_rut_delete.getSelectedItem());
-            oDAO.DeleteTrainer(oUsuario);
+            oDAO.deleteTrainer(oUsuario);
             JOptionPane.showMessageDialog(null, "SE ELIMINO EL RUT " +cbo_rut_delete.getSelectedItem());
 
             cbo_rut_delete.setModel(oDAO.llenar_combobox_trainer());

@@ -260,7 +260,7 @@ public class EquipamientoInterfaz extends javax.swing.JFrame {
             DAO oDAO = new DAO();
             TipoEquipamiento oTipoEquipamiento = new TipoEquipamiento();
             oTipoEquipamiento.setNombre(jtxt_nombre_TE.getText());
-            oDAO.InsertTipoEquipamiento(oTipoEquipamiento);
+            oDAO.insertTipoEquipamiento(oTipoEquipamiento);
             
             lbl_msg_2.setText("Ingreso Correcto !");
             cbo_id_tipoequipamiento.setModel(oDAO.llenar_combobox());
@@ -304,7 +304,7 @@ public class EquipamientoInterfaz extends javax.swing.JFrame {
             oEquipamiento.setDescripción(jtxta_descripcion.getText());
             oEquipamiento.setTipo_equipamiento_ID(Integer.parseInt(cbo_id_tipoequipamiento.getSelectedItem()+""));
             
-            oDAO.InsertEquipamiento(oEquipamiento);
+            oDAO.insertEquipamiento(oEquipamiento);
             jtable_equipamiento.setModel(oDAO.show_equipamiento());
             lbl_msg_1.setText("Registro Correcto!");
                     

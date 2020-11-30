@@ -12,7 +12,7 @@ package MODEL;
 public class Actividad {
     
     private String Nombre ,Descripción;
-    private int id, Equipacion_ID, Entrenador_ID, TipoActividad_ID, CantidadAsistentes;
+    private int id, Equipacion_ID, Entrenador_ID, TipoActividad_ID, Cupos;
 
     public String getNombre() {
         return Nombre;
@@ -62,12 +62,12 @@ public class Actividad {
         this.TipoActividad_ID = TipoActividad_ID;
     }
 
-    public int getCantidadAsistentes() {
-        return CantidadAsistentes;
+    public int getCupos() {
+        return Cupos;
     }
 
-    public void setCantidadAsistentes(int CantidadAsistentes) {
-        this.CantidadAsistentes = CantidadAsistentes;
+    public void setCupos(int CantidadAsistentes) {
+        this.Cupos = CantidadAsistentes;
     }
     
     
