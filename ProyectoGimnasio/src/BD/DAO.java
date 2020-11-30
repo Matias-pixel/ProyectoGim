@@ -291,7 +291,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     try {
         while (oConexion.rs.next()) {
-        modelo.addRow(new Object[]{oConexion.rs.getInt("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getInt("equipamiento_id_fk "),oConexion.rs.getInt("tipoActividad_id_fk "),oConexion.rs.getInt("usuario_id_fk ")});
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getString("equipamiento_id_fk"),oConexion.rs.getString("tipoActividad_id_fk"),oConexion.rs.getString("usuario_id_fk")});
         }
         return modelo;
     } catch (SQLException e) {
@@ -330,7 +330,7 @@ public DefaultTableModel show_actividades_bituin(String fecha1, String fecha2) t
     modelo.setColumnIdentifiers(new Object[]{"NOMBRE","DESCRIPCIÓN","FECHA","ENTRENADOR"});
     try {
         while (oConexion.rs.next()) {
-        modelo.addRow(new Object[]{oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("VECES USADA")});
+        modelo.addRow(new Object[]{oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("FECHA"),oConexion.rs.getString("NOMBRE")});
         }
         return modelo;
     } catch (SQLException e) {
