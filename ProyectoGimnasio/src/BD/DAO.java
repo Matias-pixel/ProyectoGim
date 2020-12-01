@@ -4,7 +4,6 @@ package BD;
 
 import MODEL.Actividad;
 
-import GUI.EquipUsados;
 
 import MODEL.Usuario;
 import MODEL.Equipamiento;
@@ -213,7 +212,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     
     public void deleteTrainer(Usuario oUsuario) throws SQLException{
-       sql="DELETE FROM usuario WHERE RUT='"+oUsuario.getRut()+"' ";
+       sql="UPDATE usuario SET Tipousuario_id_fk='3' WHERE RUT='"+oUsuario.getRut()+"' ";
        oConexion.ejecutar(sql);
        System.out.println(sql);
     }
@@ -340,9 +339,24 @@ public DefaultTableModel show_actividades_bituin(String fecha1, String fecha2) t
     
 }
 
-
-
-
+public DefaultTableModel show_trigger_2() throws SQLException{
+    
+    sql="SELECT ID, ANTIGUO_STOCK, NUEVO_STOCK FROM historialequipamiento";
+    oConexion.ejecutarSelect(sql);
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"ID","ANTIGUO STOCK","NUEVO STOCK"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("ANTIGUO_STOCK"),oConexion.rs.getString("NUEVO_STOCK")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
 
  
 }
