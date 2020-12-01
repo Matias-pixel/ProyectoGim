@@ -50,15 +50,16 @@
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btn_menu" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                          <Component id="btn_estad" max="32767" attributes="0"/>
+                          <Component id="btn_menu" min="-2" pref="135" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="btn_historial" min="-2" pref="144" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <Component id="jtxt_nombre_TE" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel5" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
-                      <Component id="jButton1" pref="289" max="32767" attributes="0"/>
+                      <Component id="jButton1" max="32767" attributes="0"/>
                       <Component id="lbl_msg_2" max="32767" attributes="0"/>
+                      <Component id="btn_estad" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="697" max="-2" attributes="0"/>
@@ -147,9 +148,11 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lbl_msg_2" min="-2" pref="27" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btn_estad" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btn_menu" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_estad" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_historial" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -343,6 +346,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtxt_cantidad">
+        </Component>
+        <Component class="javax.swing.JButton" name="btn_historial">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Historial"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_historialActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
