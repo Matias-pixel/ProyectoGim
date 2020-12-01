@@ -13,11 +13,19 @@ public class Actividad {
 
    
     
-    private String Nombre ,Descripción;
+    private String Nombre ,Descripción, Fecha;
     private int id, Equipacion_ID, Entrenador_ID, TipoActividad_ID, Cupos;
 
     public String getNombre() {
         return Nombre;
+    }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
     }
 
     public void setNombre(String Nombre) {

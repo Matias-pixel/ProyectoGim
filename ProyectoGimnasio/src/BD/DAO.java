@@ -261,7 +261,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
   }
     
     public void insertActividad(Actividad oActividad) throws SQLException{
-        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"',now(),'"+oActividad.getEntrenador_ID()+"')";
+        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEntrenador_ID()+"')";
         oConexion.ejecutar(sql);
     
     }
@@ -277,12 +277,8 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción","Cupos","fecha","equipamiento","tipo","Entrenador"});
     
     try {
-        while (oConexion.rs.next()) {
-
-       
-
+        while (oConexion.rs.next()){
         modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getString("equipamiento_id_fk"),oConexion.rs.getString("tipoActividad_id_fk"),oConexion.rs.getString("usuario_id_fk")});
-
         }
         return modelo;
     } catch (SQLException e) {
