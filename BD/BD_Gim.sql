@@ -76,8 +76,8 @@ CREATE TABLE actividadesRealizadas(
     usuario_id_fk int,
 
     primary key (id),
-    foreign key (usuario_id_fk) references usuario (id)
-    foreign key (actividades_id_fk) references actividad(id)
+    foreign key (usuario_id_fk) references usuario (id),
+    foreign key (actividad_id_fk) references actividad(id)
 )
 
 CREATE TABLE HistorialEquipamiento(
@@ -141,19 +141,19 @@ CREATE PROCEDURE equipamiento_mas_usados( IN  _equipamiento INT )
 BEGIN
     IF (_equipamiento = 1) THEN
 
-        SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM ACTIVIDAD
+        SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM 				ACTIVIDAD
         INNER JOIN equipamiento on equipamiento.ID = ACTIVIDAD.equipamiento_id_fk
         GROUP by actividad.equipamiento_id_fk
-        ORDER BY actividad.equipamiento_id_fk ASC;
+        ORDER BY COUNT(actividad.equipamiento_id_fk)  ASC;
 
     ELSEIF (_equipamiento = 2) THEN
 
         SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM ACTIVIDAD
         INNER JOIN equipamiento on equipamiento.ID = ACTIVIDAD.equipamiento_id_fk
         GROUP by actividad.equipamiento_id_fk
-        ORDER BY actividad.equipamiento_id_fk DESC;
+        ORDER BY COUNT(actividad.equipamiento_id_fk)  DESC;
 
-    END IF;    
+    END IF;
 END //
 DELIMITER ;
 -- FIN PROCEDURE 2
