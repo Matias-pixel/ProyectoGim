@@ -121,13 +121,13 @@
                                       <Component id="jLabel2" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                                       <Component id="spn_cupos" alignment="0" max="32767" attributes="0"/>
                                       <Component id="cbo_tipoActividad" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jScrollPane4" alignment="0" pref="260" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jFormattedTextField2" alignment="1" min="-2" pref="260" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="txt_nombre" min="-2" pref="166" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" pref="100" max="-2" attributes="0"/>
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <Component id="jFormattedTextField2" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -167,11 +167,11 @@
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="spn_cupos" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="jFormattedTextField2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="cbo_tipoActividad" min="-2" max="-2" attributes="0"/>

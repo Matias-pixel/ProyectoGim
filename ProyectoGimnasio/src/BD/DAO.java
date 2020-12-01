@@ -244,7 +244,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
       
     DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
-    cbo_modelo.addElement("Selecciona el nombre de un equipamiento: ");
+    cbo_modelo.addElement("Selecciona el ID de un equipamiento: ");
     
     try {
             while (oConexion.rs.next()) {
@@ -253,33 +253,36 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
             oConexion.rs.close();
     } catch (SQLException e) {
           System.out.println(e);
+          System.out.println("Es aca en cbo_modelo");
     }
     return cbo_modelo;
   }
     
     public void insertActividad(Actividad oActividad) throws SQLException{
-        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEntrenador_ID()+"')";
+        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEquipacion_ID()+"','"+oActividad.getTipoActividad_ID()+"','"+oActividad.getEntrenador_ID()+"')";
         oConexion.ejecutar(sql);
-    
+        
     }
     
     
     public DefaultTableModel show_actividad() throws SQLException{
     
-    sql="Select * from actividad";
+    sql="SELECT actividad.id,actividad.nombre, actividad.descripcion,actividad.cupos,actividad.fecha,equipamiento.nombre,tipoactividad.nombre ,usuario.nombre from actividad inner join equipamiento on equipamiento.id = actividad.equipamiento_id_fk inner join tipoactividad on tipoactividad.id = actividad.tipoActividad_id_fk inner join usuario on usuario.id = actividad.usuario_id_fk";
     oConexion.ejecutarSelect(sql);
     System.out.println(sql);
 
     DefaultTableModel modelo = new DefaultTableModel();
-    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción","Cupos","fecha","equipamiento","tipo","Entrenador"});
+    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción","Cupos","fecha","equipamiento","tipo Actividad","Entrenador"});
     
     try {
         while (oConexion.rs.next()){
-        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getString("equipamiento_id_fk"),oConexion.rs.getString("tipoActividad_id_fk"),oConexion.rs.getString("usuario_id_fk")});
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getString("nombre"),oConexion.rs.getString("nombre"),oConexion.rs.getString("nombre")});
         }
         return modelo;
     } catch (SQLException e) {
+        System.out.println("Es aca en show_actividad");
         System.out.println(e);
+        System.out.println("Es aca en show_actividad");
     }
         return null;
 }
