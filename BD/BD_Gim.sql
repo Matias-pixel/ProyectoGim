@@ -43,18 +43,6 @@ CREATE TABLE usuario(
     
 )
 
-
-CREATE TABLE actividadesRealizadas(
-    id int auto_increment,
-    nombre varchar(30),
-    actividad_id_fk int,
-    usuario_id_fk int,
-
-    primary key (id),
-    foreign key (usuario_id_fk) references usuario (id)
-    foreign key (actividades_id_fk) references actividad(id)
-)
-
 CREATE TABLE tipoActividad(
     id int auto_increment,
     nombre varchar (30),
@@ -78,6 +66,18 @@ CREATE TABLE actividad(
     foreign key (equipamiento_id_fk) references equipamiento(id),
     foreign key (tipoActividad_id_fk) references tipoActividad(id),
     foreign key (usuario_id_fk) references usuario(id)
+)
+
+
+CREATE TABLE actividadesRealizadas(
+    id int auto_increment,
+    nombre varchar(30),
+    actividad_id_fk int,
+    usuario_id_fk int,
+
+    primary key (id),
+    foreign key (usuario_id_fk) references usuario (id)
+    foreign key (actividades_id_fk) references actividad(id)
 )
 
 CREATE TABLE HistorialEquipamiento(
