@@ -145,7 +145,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
   
   }
        public boolean isUsuarioIsValid(Usuario oUsuario){
-           sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE correo = '"+oUsuario.getCorreo()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
+           sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE correo = '"+oUsuario.getCorreo()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) and (tipoUsuario_id_fk = 1 or tipoUsuario_id_fk = 2) ";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if(resultado.next()){
@@ -188,14 +188,11 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
   }
 
     public void updateTrainer(Usuario oUsuario) throws SQLException{
-  
-         
+
        sql="UPDATE usuario SET nombre='"+oUsuario.getNombre()+"',apellido='"+oUsuario.getApellido()+"', contrasena=SHA2('"+oUsuario.getPass()+"',0), correo='"+oUsuario.getCorreo()+"' WHERE RUT='"+oUsuario.getRut()+"' ";
        oConexion.ejecutar(sql);
        System.out.println(sql);
-  
-  
-  
+
     }
     
     
@@ -261,9 +258,9 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
   }
     
     public void insertActividad(Actividad oActividad) throws SQLException{
-        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEquipacion_ID()+"','"+oActividad.getTipoActividad_ID()+"','"+oActividad.getEntrenador_ID()+"')";
+        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEntrenador_ID()+"')";
         oConexion.ejecutar(sql);
-        System.out.println(sql);
+    
     }
     
     

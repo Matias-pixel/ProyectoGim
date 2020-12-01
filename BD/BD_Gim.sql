@@ -43,18 +43,6 @@ CREATE TABLE usuario(
     
 )
 
-
-CREATE TABLE actividadesRealizadas(
-    id int auto_increment,
-    nombre varchar(30),
-    actividad_id_fk int,
-    usuario_id_fk int,
-
-    primary key (id),
-    foreign key (usuario_id_fk) references usuario (id)
-    foreign key (actividades_id_fk) references actividad(id)
-)
-
 CREATE TABLE tipoActividad(
     id int auto_increment,
     nombre varchar (30),
@@ -80,6 +68,18 @@ CREATE TABLE actividad(
     foreign key (usuario_id_fk) references usuario(id)
 )
 
+
+CREATE TABLE actividadesRealizadas(
+    id int auto_increment,
+    nombre varchar(30),
+    actividad_id_fk int,
+    usuario_id_fk int,
+
+    primary key (id),
+    foreign key (usuario_id_fk) references usuario (id)
+    foreign key (actividades_id_fk) references actividad(id)
+)
+
 CREATE TABLE HistorialEquipamiento(
 
     ID INT AUTO_INCREMENT,
@@ -95,10 +95,10 @@ CREATE TABLE HistorialEquipamiento(
 -- TRIGGER 1  
 
 DELIMITER //
-CREATE TRIGGER gatito AFTER INSERT ON actividades
+CREATE TRIGGER gatito AFTER INSERT ON actividad
 FOR EACH ROW
     BEGIN
-        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.actividad_id_fk, new.usuario_id_fk);
+        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.id, new.usuario_id_fk);
 
     END //
 DELIMITER ;
