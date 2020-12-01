@@ -126,7 +126,8 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
        
        public DefaultComboBoxModel llenar_comboboxTipoActividad () throws SQLException{
   
-        sql="Select id from tipoActividad ";
+        sql="Select id from tipoActividad\n" +
+            "order by id ASC ";
         oConexion.ejecutarSelect(sql);
          System.out.println(sql);
       
@@ -239,7 +240,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
 }
     public DefaultComboBoxModel llenar_combobox_equipamiento () throws SQLException{
   
-    sql="Select id from equipamiento ";
+    sql="Select id from equipamiento order by id asc ";
     oConexion.ejecutarSelect(sql);
     
       
@@ -360,7 +361,9 @@ public DefaultTableModel show_trigger_2() throws SQLException{
     
     public DefaultComboBoxModel llenar_comboboxEntrenador () throws SQLException{
   
-        sql="Select id from usuario where tipoUsuario_id_fk = 2 ";
+        sql="Select id from usuario \n" +
+            "where tipoUsuario_id_fk = 2\n" +
+            "ORDER by id asc  ";
         oConexion.ejecutarSelect(sql);
         System.out.println(sql);
       
