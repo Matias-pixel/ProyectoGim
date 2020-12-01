@@ -14,10 +14,16 @@ public class Usuario {
     private int id , tipoUsuario_id_fk;
 
     public Usuario() {
-        
     }
 
+    
     public Usuario(String Nombre, String Pass) {
+        this.Nombre = Nombre;
+        this.Pass = Pass;
+    }
+    
+    public Usuario(int id ,String Nombre, String Pass){
+        this.id = id;
         this.Nombre = Nombre;
         this.Pass = Pass;
     }

@@ -5,27 +5,29 @@
  */
 package GUI;
 
-import BD.Conexion;
+
 import BD.DAO;
 import MODEL.Usuario;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
 /**
  *
  * @author Esteban V
  */
 public class Login extends javax.swing.JFrame {
-        
     
-    public Login() {
+   
+        public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.pack();
+        
+        
+        
+    }
+
+    public Login(JButton btn_verificar) {
+        this.btn_verificar = btn_verificar;
     }
 
     /**
@@ -154,21 +156,23 @@ public class Login extends javax.swing.JFrame {
               if(usuario.isEmpty() || password.isEmpty()){
                   JOptionPane.showMessageDialog(this, "Los campos están vacios");
               }else{
-                  if(oDAO.isEntrenadorisValid(oUsuario)){
-                      int adminOrEntrenador = oDAO.obtenerUsuarioId(usuario);
-                      if(adminOrEntrenador == 1){
+                  if(oDAO.isUsuarioIsValid(oUsuario)){
+                      String adminOrEntrenador = oDAO.obtenerUsuarioId(usuario);
+                      if(adminOrEntrenador.equals("Admin")){
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ADMIN
                           Menu oMenu = new Menu();
                           oMenu.setVisible(true);
                           this.dispose();
                       }else{
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ENTRENADOR
+                          int idFroName = oDAO.idByName(usuario);
+                          oUsuario.setId(idFroName);
+                          
                           MenuTrainer oMenuTrainer = new MenuTrainer();
                           oMenuTrainer.setVisible(true);
                           this.dispose();
+                          
                       }
-                      
-                      
                   }else{
                       JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                   }
@@ -184,7 +188,7 @@ public class Login extends javax.swing.JFrame {
     private void btn_verificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verificarMouseClicked
      
     }//GEN-LAST:event_btn_verificarMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
@@ -219,6 +223,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_verificar;

@@ -1,4 +1,3 @@
-
 package BD;
 
 
@@ -145,7 +144,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
          return cbo_modelo;
   
   }
-       public boolean isEntrenadorisValid(Usuario oUsuario){
+       public boolean isUsuarioIsValid(Usuario oUsuario){
            sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
@@ -157,32 +156,21 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
            }
            return false;
        }
-       public int obtenerUsuarioId(String nombre){
-           sql ="Select tipoUsuario_id_fk as 'Tipo'  from usuario where nombre = '"+nombre+"';";
+       public String obtenerUsuarioId(String nombre){
+           sql ="Select tipousuario.nombre as 'Tipo' \n" +
+                "from usuario\n" +
+                "inner join tipousuario on tipousuario.id = usuario.tipoUsuario_id_fk\n" +
+                "where usuario.nombre = '"+nombre+"'";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if (resultado.next()){
-                   return resultado.getInt("Tipo");
+                   return resultado.getString("Tipo");
                }
            } catch (SQLException e) {
                System.out.println(e);
            }
-        return 0;  
+        return null;
        }
-       
-       public int isAdmin (Usuario oUsuario){
-            sql = "SELECT tipoUsuario_id_fk as 'tipo' FROM usuario where id = '"+oUsuario.getTipoUsuario_id_fk()+"'";
-            try {
-               ResultSet resultado = oConexion.ejecutarSelect(sql);
-               if(resultado.next()){
-                   return resultado.getInt("tipo");
-               }
-           } catch (SQLException e) {
-                System.out.println(e);
-           }
-        return 0;
-       }
-
  
 public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
   
@@ -290,7 +278,11 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     try {
         while (oConexion.rs.next()) {
+
+        modelo.addRow(new Object[]{oConexion.rs.getInt("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getInt("equipamiento_id_fk"),oConexion.rs.getInt("tipoActividad_id_fk"),oConexion.rs.getInt("usuario_id_fk")});
+
         modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getString("equipamiento_id_fk"),oConexion.rs.getString("tipoActividad_id_fk"),oConexion.rs.getString("usuario_id_fk")});
+
         }
         return modelo;
     } catch (SQLException e) {
@@ -357,6 +349,24 @@ public DefaultTableModel show_trigger_2() throws SQLException{
         return null;
     
 }
+    public int idByName (String txt){
+            sql = "SELECT id FROM usuario where nombre = '"+txt+"'";
+            try {
+               ResultSet resultado = oConexion.ejecutarSelect(sql);
+               if(resultado.next()){
+                   return resultado.getInt("tipo");
+               }
+           } catch (SQLException e) {
+                System.out.println(e);
+           }
+        return 0;
+       }
+
+
+ 
+
+
+
 
  
 }
