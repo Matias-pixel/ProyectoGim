@@ -193,9 +193,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
        sql="UPDATE usuario SET nombre='"+oUsuario.getNombre()+"',apellido='"+oUsuario.getApellido()+"', contrasena=SHA2('"+oUsuario.getPass()+"',0), correo='"+oUsuario.getCorreo()+"' WHERE RUT='"+oUsuario.getRut()+"' ";
        oConexion.ejecutar(sql);
        System.out.println(sql);
-  
-  
-  
+
     }
     
     
