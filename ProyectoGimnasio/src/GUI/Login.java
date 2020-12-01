@@ -11,12 +11,15 @@ import MODEL.Usuario;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 /**
  *
  * @author Esteban V
  */
 public class Login extends javax.swing.JFrame {
-    
+
+    private ActividadInterfaz ActividadInterfaz;
+  
    
         public Login() {
         initComponents();
@@ -61,7 +64,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("USUARIO");
+        jLabel5.setText("Correo");
 
         jLabel1.setText("CONTRASEÑA");
 
@@ -147,17 +150,17 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
          try {
-              String usuario = txt_usuario.getText().trim();
+              String correo = txt_usuario.getText().trim();
               String password = new String(pss_usuario.getPassword());
-              Usuario oUsuario = new Usuario(usuario,password);
+              Usuario oUsuario = new Usuario(correo,password);
               DAO oDAO = new DAO();
               
               
-              if(usuario.isEmpty() || password.isEmpty()){
+              if(correo.isEmpty() || password.isEmpty()){
                   JOptionPane.showMessageDialog(this, "Los campos están vacios");
               }else{
                   if(oDAO.isUsuarioIsValid(oUsuario)){
-                      String adminOrEntrenador = oDAO.obtenerUsuarioId(usuario);
+                      String adminOrEntrenador = oDAO.obtenerUsuarioId(correo);
                       if(adminOrEntrenador.equals("Admin")){
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ADMIN
                           Menu oMenu = new Menu();
@@ -165,8 +168,6 @@ public class Login extends javax.swing.JFrame {
                           this.dispose();
                       }else{
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ENTRENADOR
-                          int idFroName = oDAO.idByName(usuario);
-                          oUsuario.setId(idFroName);
                           
                           MenuTrainer oMenuTrainer = new MenuTrainer();
                           oMenuTrainer.setVisible(true);
@@ -222,8 +223,9 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+        
     }
-    
+  
     
     
 
@@ -236,4 +238,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField pss_usuario;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
+
 }

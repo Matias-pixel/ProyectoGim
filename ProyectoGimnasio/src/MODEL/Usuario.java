@@ -17,16 +17,11 @@ public class Usuario {
     }
 
     
-    public Usuario(String Nombre, String Pass) {
-        this.Nombre = Nombre;
+    public Usuario(String Correo, String Pass) {
+        this.Correo = Correo;
         this.Pass = Pass;
     }
     
-    public Usuario(int id ,String Nombre, String Pass){
-        this.id = id;
-        this.Nombre = Nombre;
-        this.Pass = Pass;
-    }
 
     public int getTipoUsuario_id_fk() {
         return tipoUsuario_id_fk;

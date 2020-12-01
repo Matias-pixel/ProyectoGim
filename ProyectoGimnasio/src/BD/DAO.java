@@ -146,7 +146,7 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
   
   }
        public boolean isUsuarioIsValid(Usuario oUsuario){
-           sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE nombre = '"+oUsuario.getNombre()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
+           sql = "SELECT COUNT(*) AS 'existe' FROM usuario WHERE correo = '"+oUsuario.getCorreo()+"' AND contrasena = SHA2('"+oUsuario.getPass()+"',0) ";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if(resultado.next()){
@@ -157,11 +157,11 @@ public DefaultComboBoxModel llenar_combobox () throws SQLException{
            }
            return false;
        }
-       public String obtenerUsuarioId(String nombre){
+       public String obtenerUsuarioId(String Correo){
            sql ="Select tipousuario.nombre as 'Tipo' \n" +
                 "from usuario\n" +
                 "inner join tipousuario on tipousuario.id = usuario.tipoUsuario_id_fk\n" +
-                "where usuario.nombre = '"+nombre+"'";
+                "where usuario.correo = '"+Correo+"'";
            try {
                ResultSet resultado = oConexion.ejecutarSelect(sql);
                if (resultado.next()){
@@ -262,7 +262,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
   }
     
     public void insertActividad(Actividad oActividad) throws SQLException{
-        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"',now(),1)";
+        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"',now(),'"+oActividad.getEntrenador_ID()+"')";
         oConexion.ejecutar(sql);
     
     }
@@ -280,7 +280,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     try {
         while (oConexion.rs.next()) {
 
-        modelo.addRow(new Object[]{oConexion.rs.getInt("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getInt("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getInt("equipamiento_id_fk"),oConexion.rs.getInt("tipoActividad_id_fk"),oConexion.rs.getInt("usuario_id_fk")});
+       
 
         modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("DESCRIPCION"),oConexion.rs.getString("cupos"),oConexion.rs.getString("fecha"),oConexion.rs.getString("equipamiento_id_fk"),oConexion.rs.getString("tipoActividad_id_fk"),oConexion.rs.getString("usuario_id_fk")});
 
@@ -344,6 +344,27 @@ public DefaultTableModel show_actividades_bituin(String fecha1, String fecha2) t
            }
         return 0;
        }
+    
+    public DefaultComboBoxModel llenar_comboboxEntrenador () throws SQLException{
+  
+        sql="Select id from usuario where tipoUsuario_id_fk = 2 ";
+        oConexion.ejecutarSelect(sql);
+        System.out.println(sql);
+      
+        DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+        cbo_modelo.addElement("Selecciona el ID del Entrenador: ");
+        
+        try {
+            while (oConexion.rs.next()) {
+                cbo_modelo.addElement(oConexion.rs.getString("id"));
+            }
+            oConexion.rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+         return cbo_modelo;
+  
+  }
 
 
  
