@@ -259,9 +259,9 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
   }
     
     public void insertActividad(Actividad oActividad) throws SQLException{
-        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEntrenador_ID()+"')";
+        sql = "Insert into actividad VALUES (null,'"+oActividad.getNombre()+"','"+oActividad.getDescripción()+"','"+oActividad.getCupos()+"','"+oActividad.getFecha()+"','"+oActividad.getEquipacion_ID()+"','"+oActividad.getTipoActividad_ID()+"','"+oActividad.getEntrenador_ID()+"')";
         oConexion.ejecutar(sql);
-    
+        System.out.println(sql);
     }
     
     
