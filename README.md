@@ -6,7 +6,7 @@
 # Integrantes
 - **Matías Marchant**
 - **Esteban Vivanco** 
-
+# Modelo
 ![BD_IMG](https://user-images.githubusercontent.com/44692124/100701420-72cf0d80-337e-11eb-9fe3-975deffbd3af.jpg)
 
 
