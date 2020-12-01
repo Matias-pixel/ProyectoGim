@@ -310,7 +310,7 @@ public DefaultTableModel show_equip_orden(int param) throws SQLException{
     
 public DefaultTableModel show_actividades_bituin(String fecha1, String fecha2) throws SQLException{
     
-    sql="CALL calculos_fecha_entre("+fecha1+","+fecha2+")";
+    sql="CALL calculos_fecha_entre('"+fecha1+"','"+fecha2+"')";
     oConexion.ejecutarSelect(sql);
     
     DefaultTableModel modelo = new DefaultTableModel();

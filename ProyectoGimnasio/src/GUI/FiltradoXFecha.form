@@ -60,10 +60,10 @@
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                          <Component id="jtxt_fecha1" min="-2" pref="262" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
-                          <Component id="jtxt_fecha2" min="-2" pref="262" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
+                          <Component id="jtxt_fecha1" min="-2" pref="285" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                          <Component id="jtxt_fecha2" min="-2" pref="285" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -103,10 +103,6 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="jtxt_fecha2">
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtxt_fecha1">
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="INGRESE LAS FECHAS PARA FILTRAR "/>
@@ -150,6 +146,20 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jtxt_fecha1">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.JFormattedTextField.AbstractFormatterFactory() {&#xd;&#xa;public javax.swing.JFormattedTextField.AbstractFormatter&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;    getFormatter(javax.swing.JFormattedTextField tf){&#xd;&#xa;    try{&#xd;&#xa;        return new javax.swing.text.MaskFormatter(&quot;####-##-## ##:##:##&quot;);&#xd;&#xa;&#xd;&#xa;    }catch(java.text.ParseException e){&#xd;&#xa;        System.out.println(e);&#xd;&#xa;    }&#xd;&#xa;    return null;&#xd;&#xa;}&#xd;&#xa;}" type="code"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jtxt_fecha2">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.JFormattedTextField.AbstractFormatterFactory() {&#xd;&#xa;public javax.swing.JFormattedTextField.AbstractFormatter&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;    getFormatter(javax.swing.JFormattedTextField tf){&#xd;&#xa;    try{&#xd;&#xa;        return new javax.swing.text.MaskFormatter(&quot;####-##-## ##:##:##&quot;);&#xd;&#xa;&#xd;&#xa;    }catch(java.text.ParseException e){&#xd;&#xa;        System.out.println(e);&#xd;&#xa;    }&#xd;&#xa;    return null;&#xd;&#xa;}&#xd;&#xa;}" type="code"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

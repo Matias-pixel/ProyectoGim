@@ -33,14 +33,14 @@ public class FiltradoXFecha extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jtxt_fecha2 = new javax.swing.JTextField();
-        jtxt_fecha1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TABLA = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jtxt_fecha1 = new javax.swing.JFormattedTextField();
+        jtxt_fecha2 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -77,6 +77,34 @@ public class FiltradoXFecha extends javax.swing.JFrame {
             }
         });
 
+        jtxt_fecha1.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
+            public javax.swing.JFormattedTextField.AbstractFormatter
+
+            getFormatter(javax.swing.JFormattedTextField tf){
+                try{
+                    return new javax.swing.text.MaskFormatter("####-##-## ##:##:##");
+
+                }catch(java.text.ParseException e){
+                    System.out.println(e);
+                }
+                return null;
+            }
+        });
+
+        jtxt_fecha2.setFormatterFactory(new javax.swing.JFormattedTextField.AbstractFormatterFactory() {
+            public javax.swing.JFormattedTextField.AbstractFormatter
+
+            getFormatter(javax.swing.JFormattedTextField tf){
+                try{
+                    return new javax.swing.text.MaskFormatter("####-##-## ##:##:##");
+
+                }catch(java.text.ParseException e){
+                    System.out.println(e);
+                }
+                return null;
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,10 +121,10 @@ public class FiltradoXFecha extends javax.swing.JFrame {
                         .addGap(440, 440, 440)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(jtxt_fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110)
-                        .addComponent(jtxt_fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(206, 206, 206)
+                        .addComponent(jtxt_fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(jtxt_fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1034, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -150,8 +178,10 @@ public class FiltradoXFecha extends javax.swing.JFrame {
             DAO oDAO = new DAO();
             String fecha1 = jtxt_fecha1.getText();
             String fecha2 = jtxt_fecha2.getText();
+                             System.out.println(fecha1);
+                 System.out.println(fecha2);
             TABLA.setModel(oDAO.show_actividades_bituin(fecha1, fecha2));
-            
+
             
         } catch (SQLException ex) {
             Logger.getLogger(FiltradoXFecha.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,7 +231,7 @@ public class FiltradoXFecha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jtxt_fecha1;
-    private javax.swing.JTextField jtxt_fecha2;
+    private javax.swing.JFormattedTextField jtxt_fecha1;
+    private javax.swing.JFormattedTextField jtxt_fecha2;
     // End of variables declaration//GEN-END:variables
 }
