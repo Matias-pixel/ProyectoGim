@@ -95,10 +95,10 @@ CREATE TABLE HistorialEquipamiento(
 -- TRIGGER 1  
 
 DELIMITER //
-CREATE TRIGGER gatito AFTER INSERT ON actividades
+CREATE TRIGGER gatito AFTER INSERT ON actividad
 FOR EACH ROW
     BEGIN
-        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.actividad_id_fk, new.usuario_id_fk);
+        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.id, new.usuario_id_fk);
 
     END //
 DELIMITER ;
