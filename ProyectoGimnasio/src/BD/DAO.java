@@ -329,14 +329,14 @@ public DefaultTableModel show_actividades_bituin(String fecha1, String fecha2) t
 
 public DefaultTableModel show_trigger_2() throws SQLException{
     
-    sql="SELECT ID, ANTIGUO_STOCK, NUEVO_STOCK FROM historialequipamiento";
+    sql="SELECT equipamiento.NOMBRE, fecha_actualizado, ANTIGUO_STOCK, NUEVO_STOCK FROM historialequipamiento INNER JOIN  equipamiento ON historialequipamiento.EQUIPAMIENTO_ID_FK = equipamiento.id";
     oConexion.ejecutarSelect(sql);
     
     DefaultTableModel modelo = new DefaultTableModel();
-    modelo.setColumnIdentifiers(new Object[]{"ID","ANTIGUO STOCK","NUEVO STOCK"});
+    modelo.setColumnIdentifiers(new Object[]{"NOMBRE","Fecha Actualizado","ANTIGUO STOCK","NUEVO STOCK"});
     try {
         while (oConexion.rs.next()) {
-        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("ANTIGUO_STOCK"),oConexion.rs.getString("NUEVO_STOCK")});
+        modelo.addRow(new Object[]{oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("fecha_actualizado"),oConexion.rs.getString("ANTIGUO_STOCK"),oConexion.rs.getString("NUEVO_STOCK")});
         }
         return modelo;
     } catch (SQLException e) {
@@ -378,9 +378,48 @@ public DefaultTableModel show_trigger_2() throws SQLException{
          return cbo_modelo;
   
   }
+    
+    public DefaultComboBoxModel llenar_comboboxEntrenador_rut() throws SQLException{
+  
+        sql="Select rut from usuario where tipoUsuario_id_fk = 2 ";
+        oConexion.ejecutarSelect(sql);
+        System.out.println(sql);
+      
+        DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+        cbo_modelo.addElement("Selecciona el RUT del Entrenador: ");
+        
+        try {
+            while (oConexion.rs.next()) {
+                cbo_modelo.addElement(oConexion.rs.getString("rut"));
+            }
+            oConexion.rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+         return cbo_modelo;
+  
+  }
 
 
- 
+    public DefaultTableModel show_misactividades(Usuario oUsuario) throws SQLException{
+    
+    sql="SELECT actividadesrealizadas.id , actividadesrealizadas.nombre, usuario.nombre FROM actividadesrealizadas INNER JOIN usuario ON usuario.id = actividadesrealizadas.usuario_id_fk where usuario.rut = '"+oUsuario.getRut()+"'";
+    oConexion.ejecutarSelect(sql);
+    System.out.println(sql);
+
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"ID","Nombre","Descripción"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("ID"),oConexion.rs.getString("NOMBRE"),oConexion.rs.getString("NOMBRE")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
 
 
 
