@@ -45,6 +45,7 @@ public class FiltradoXFecha extends javax.swing.JFrame {
         jtxt_fecha2 = new javax.swing.JFormattedTextField();
         pnl_arriba = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btn_home = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -112,13 +113,25 @@ public class FiltradoXFecha extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INGRESE LAS FECHAS PARA FILTRAR ");
 
+        btn_home.setText("HOME");
+        btn_home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_homeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl_arribaLayout = new javax.swing.GroupLayout(pnl_arriba);
         pnl_arriba.setLayout(pnl_arribaLayout);
         pnl_arribaLayout.setHorizontalGroup(
             pnl_arribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_arribaLayout.createSequentialGroup()
-                .addGap(440, 440, 440)
-                .addComponent(jLabel1)
+                .addGroup(pnl_arribaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_arribaLayout.createSequentialGroup()
+                        .addGap(440, 440, 440)
+                        .addComponent(jLabel1))
+                    .addGroup(pnl_arribaLayout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(btn_home, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(469, Short.MAX_VALUE))
         );
         pnl_arribaLayout.setVerticalGroup(
@@ -126,7 +139,9 @@ public class FiltradoXFecha extends javax.swing.JFrame {
             .addGroup(pnl_arribaLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(btn_home)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -171,7 +186,7 @@ public class FiltradoXFecha extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -208,6 +223,14 @@ public class FiltradoXFecha extends javax.swing.JFrame {
             Logger.getLogger(FiltradoXFecha.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btn_homeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_homeActionPerformed
+
+        MenuTrainer oMenuTrainer = new MenuTrainer();
+        oMenuTrainer.setVisible(true);
+        this.dispose();
+
+    }//GEN-LAST:event_btn_homeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,6 +269,7 @@ public class FiltradoXFecha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TABLA;
+    private javax.swing.JButton btn_home;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
