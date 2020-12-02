@@ -43,6 +43,18 @@ CREATE TABLE usuario(
     
 )
 
+
+CREATE TABLE actividadesRealizadas(
+    id int auto_increment,
+    nombre varchar(30),
+    actividad_id_fk int,
+    usuario_id_fk int,
+
+    primary key (id),
+    foreign key (usuario_id_fk) references usuario (id)
+    foreign key (actividades_id_fk) references actividad(id)
+)
+
 CREATE TABLE tipoActividad(
     id int auto_increment,
     nombre varchar (30),
@@ -68,18 +80,6 @@ CREATE TABLE actividad(
     foreign key (usuario_id_fk) references usuario(id)
 )
 
-
-CREATE TABLE actividadesRealizadas(
-    id int auto_increment,
-    nombre varchar(30),
-    actividad_id_fk int,
-    usuario_id_fk int,
-
-    primary key (id),
-    foreign key (usuario_id_fk) references usuario (id)
-    foreign key (actividades_id_fk) references actividad(id)
-)
-
 CREATE TABLE HistorialEquipamiento(
 
     ID INT AUTO_INCREMENT,
@@ -95,10 +95,10 @@ CREATE TABLE HistorialEquipamiento(
 -- TRIGGER 1  
 
 DELIMITER //
-CREATE TRIGGER gatito AFTER INSERT ON actividad
+CREATE TRIGGER gatito AFTER INSERT ON actividades
 FOR EACH ROW
     BEGIN
-        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.id, new.usuario_id_fk);
+        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.actividad_id_fk, new.usuario_id_fk);
 
     END //
 DELIMITER ;
@@ -111,7 +111,7 @@ DELIMITER //
 CREATE TRIGGER gatitoinventario AFTER UPDATE ON equipamiento
 FOR EACH ROW
     BEGIN
-        INSERT INTO historialequipamiento VALUES (null, new.id, old.cantidad, new.cantidad  );
+        INSERT INTO historialequipamiento VALUES (null, new.id, now(), old.cantidad, new.cantidad  );
 
     END //
 DELIMITER ;
@@ -123,7 +123,7 @@ DELIMITER ;
 -- ##### PROCEDIMIENTO ALMACENADO PARA FILTRAR ENTRE FECHAS #####
 
 DELIMITER //
-CREATE PROCEDURE calculos_fecha_entre(IN _FECHA1 DATE,_FECHA2 DATE)
+CREATE PROCEDURE calculos_fecha_entre(_FECHA1 DATETIME,_FECHA2 DATETIME)
 BEGIN
 
     SELECT ACTIVIDAD.NOMBRE, ACTIVIDAD.DESCRIPCION, ACTIVIDAD.FECHA, USUARIO.NOMBRE FROM ACTIVIDAD
