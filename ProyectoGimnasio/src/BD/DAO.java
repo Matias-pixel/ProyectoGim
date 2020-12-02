@@ -23,7 +23,7 @@ public class DAO {
     public DAO() throws SQLException {
         oConexion = new Conexion( //se inicializa el objeto conexion
                 "localhost",//se entrega servidor
-                "gimnasio",//nombre de la base de datos       
+                "gimnasio1",//nombre de la base de datos       
                 "root",//usuario
                 ""//contraseña
         );
@@ -488,6 +488,7 @@ public DefaultTableModel show_trigger_2() throws SQLException{
         return null;
     
 }
+    
     
  
 }

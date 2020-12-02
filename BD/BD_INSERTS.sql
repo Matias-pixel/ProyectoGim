@@ -22,12 +22,12 @@ INSERT INTO tipousuario VALUES (null, 'admin'),(null, 'Entrenador'),(null, 'No V
 
 -- INSERT DENTRO DE USUARIO
                     -- ADMIN
-                    INSERT INTO USUARIO VALUES (null, '111-1','Soy','Admin', SHA2('12345',0), 'AdminMax@gmail.com', 1),
+                    INSERT INTO USUARIO VALUES (null, '111-1','Soy','Admin', SHA2('12345',0), 'AdminMax@gmail.com', 1);
 
                     -- Entrenadores
 
-                    INSERT INTO USUARIO VALUES (null,'222-2','Pepe','Tapia', SHA2('123456',0),'PepeTapia@gmail.com',2),
-                    INSERT INTO USUARIO VALUES (null,'333-3','Sebástian','Soto', SHA2('1234567',0),'SebaSoto@gmail.com',2),
+                    INSERT INTO USUARIO VALUES (null,'222-2','Pepe','Tapia', SHA2('123456',0),'PepeTapia@gmail.com',2);
+                    INSERT INTO USUARIO VALUES (null,'333-3','Sebástian','Soto', SHA2('1234567',0),'SebaSoto@gmail.com',2);
                     INSERT INTO USUARIO VALUES (null,'444-4','Boris','FitnessMan', SHA2('1234568',0),'BorisFitness@gmail.com',2);
 
 

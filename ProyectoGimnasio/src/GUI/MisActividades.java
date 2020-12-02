@@ -148,6 +148,7 @@ public class MisActividades extends javax.swing.JFrame {
         try {
             DAO oDAO = new DAO();
             cbo_mirut.setModel(oDAO.llenar_comboboxEntrenador_rut());
+            
         } catch (SQLException ex) {
             Logger.getLogger(MisActividades.class.getName()).log(Level.SEVERE, null, ex);
         }

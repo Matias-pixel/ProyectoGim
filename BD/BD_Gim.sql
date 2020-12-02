@@ -44,17 +44,6 @@ CREATE TABLE usuario(
 )
 
 
-CREATE TABLE actividadesRealizadas(
-    id int auto_increment,
-    nombre varchar(30),
-    actividad_id_fk int,
-    usuario_id_fk int,
-
-    primary key (id),
-    foreign key (usuario_id_fk) references usuario (id)
-    foreign key (actividades_id_fk) references actividad(id)
-)
-
 CREATE TABLE tipoActividad(
     id int auto_increment,
     nombre varchar (30),
@@ -80,6 +69,19 @@ CREATE TABLE actividad(
     foreign key (usuario_id_fk) references usuario(id)
 )
 
+
+CREATE TABLE actividadesRealizadas(
+    id int auto_increment,
+    nombre varchar(30),
+    actividad_id_fk int,
+    usuario_id_fk int,
+
+    primary key (id),
+    foreign key (usuario_id_fk) references usuario (id),
+    foreign key (actividad_id_fk) references actividad(id)
+)
+
+
 CREATE TABLE HistorialEquipamiento(
 
     ID INT AUTO_INCREMENT,
@@ -99,7 +101,7 @@ DELIMITER //
 CREATE TRIGGER gatito AFTER INSERT ON actividades
 FOR EACH ROW
     BEGIN
-        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.actividad_id_fk, new.usuario_id_fk);
+        INSERT INTO actividadesrealizadas VALUES (null, NEW.nombre, new.id, new.usuario_id_fk);
 
     END //
 DELIMITER ;
@@ -121,22 +123,8 @@ DELIMITER ;
 
 
 
--- ##### PROCEDIMIENTO ALMACENADO PARA FILTRAR ENTRE FECHAS #####
+-- Procedimiento 1
 
-DELIMITER //
-CREATE PROCEDURE calculos_fecha_entre(_FECHA1 DATETIME,_FECHA2 DATETIME)
-BEGIN
-
-    SELECT ACTIVIDAD.NOMBRE, ACTIVIDAD.DESCRIPCION, ACTIVIDAD.FECHA, USUARIO.NOMBRE FROM ACTIVIDAD
-    INNER JOIN USUARIO on USUARIO.ID = ACTIVIDAD.usuario_id_fk
-    WHERE ACTIVIDAD.FECHA BETWEEN _FECHA1 AND _FECHA2;
-
-END //
-DELIMITER ;
-
--- FIN PROCEDURE 1
-
--- PROCEDIMIENTO ALMACENADO PARA MOSTRAR LOS EQUIPAMIENTOS DEPENDIENDO EL ORDEN
 DELIMITER //
 CREATE PROCEDURE equipamiento_mas_usados( IN  _equipamiento INT )
 BEGIN
@@ -145,14 +133,14 @@ BEGIN
         SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM ACTIVIDAD
         INNER JOIN equipamiento on equipamiento.ID = ACTIVIDAD.equipamiento_id_fk
         GROUP by actividad.equipamiento_id_fk
-        ORDER BY actividad.equipamiento_id_fk ASC;
+        ORDER BY COUNT(actividad.equipamiento_id_fk) ASC;
 
     ELSEIF (_equipamiento = 2) THEN
 
         SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM ACTIVIDAD
         INNER JOIN equipamiento on equipamiento.ID = ACTIVIDAD.equipamiento_id_fk
         GROUP by actividad.equipamiento_id_fk
-        ORDER BY actividad.equipamiento_id_fk DESC;
+        ORDER BY COUNT(actividad.equipamiento_id_fk) DESC;
 
     END IF;    
 END //
@@ -173,4 +161,16 @@ BEGIN
 END //
 DELIMITER ; 
 -- FIN PROCEDIMIENTO
+						     
+-- PROCEDIMIENTO 3
+DELIMITER //
+CREATE PROCEDURE calculos_fecha_entre(_FECHA1 DATETIME,_FECHA2 DATETIME)
+BEGIN
 
+    SELECT ACTIVIDAD.NOMBRE, ACTIVIDAD.DESCRIPCION, ACTIVIDAD.FECHA, USUARIO.NOMBRE FROM ACTIVIDAD
+    INNER JOIN USUARIO on USUARIO.ID = ACTIVIDAD.usuario_id_fk
+    WHERE ACTIVIDAD.FECHA BETWEEN _FECHA1 AND _FECHA2;
+
+END //
+DELIMITER ;
+-- Fin procedimiento 3
