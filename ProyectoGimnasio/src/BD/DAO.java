@@ -467,6 +467,28 @@ public DefaultTableModel show_trigger_2() throws SQLException{
 
     }
     
+    public DefaultTableModel show_table_entrenadores() throws SQLException{
+    
+    sql="select usuario.rut,usuario.nombre,usuario.apellido,usuario.correo,tipousuario.nombre 'tipo'\n" +
+        "from usuario\n" +
+        "inner join tipousuario on tipousuario.id = usuario.tipoUsuario_id_fk\n" +
+        "where usuario.tipoUsuario_id_fk = 2 or usuario.tipoUsuario_id_fk = 3";
+    oConexion.ejecutarSelect(sql);
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.setColumnIdentifiers(new Object[]{"rut","nombre","apellido","correo","Tipo usuario"});
+    try {
+        while (oConexion.rs.next()) {
+        modelo.addRow(new Object[]{oConexion.rs.getString("rut"),oConexion.rs.getString("nombre"),oConexion.rs.getString("apellido"),oConexion.rs.getString("correo"),oConexion.rs.getString("tipo")});
+        }
+        return modelo;
+    } catch (SQLException e) {
+        System.out.println(e);
+    }
+        return null;
+    
+}
+    
  
 }
 

@@ -70,6 +70,7 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
         name = new javax.swing.JLabel();
         jtxt_Uapellido = new javax.swing.JTextField();
         apellido = new javax.swing.JLabel();
+        btn_mostrar = new javax.swing.JButton();
         pnl3 = new javax.swing.JPanel();
         btn_eliminar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
@@ -210,6 +211,13 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
 
         apellido.setText("Apellidos");
 
+        btn_mostrar.setText("MOSTRAR");
+        btn_mostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mostrarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnl2Layout = new javax.swing.GroupLayout(pnl2);
         pnl2.setLayout(pnl2Layout);
         pnl2Layout.setHorizontalGroup(
@@ -217,19 +225,21 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
             .addGroup(pnl2Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                    .addComponent(jtxt_rut1)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxt_Ucorreo)
-                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtxt_Upass)
-                    .addComponent(ACTUALIZAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtxt_Unombre)
-                    .addComponent(jtxt_Uapellido))
+                    .addComponent(btn_mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addGroup(pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                        .addComponent(jtxt_rut1)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtxt_Ucorreo)
+                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtxt_Upass)
+                        .addComponent(ACTUALIZAR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtxt_Unombre)
+                        .addComponent(jtxt_Uapellido)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
         pnl2Layout.setVerticalGroup(
@@ -259,7 +269,9 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
                 .addComponent(pass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtxt_Upass, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ACTUALIZAR, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -483,6 +495,12 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxt_UnombreActionPerformed
 
+    private void btn_mostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrarActionPerformed
+        EntrenadoresInterfaz oEntrenadoresInterfaz = new EntrenadoresInterfaz();
+        oEntrenadoresInterfaz.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btn_mostrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,6 +544,7 @@ public class EntrenadorInterfaz extends javax.swing.JFrame {
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_menu;
+    private javax.swing.JButton btn_mostrar;
     private javax.swing.JComboBox<String> cbo_rut_delete;
     private javax.swing.JLabel correo;
     private javax.swing.JLabel jLabel1;
