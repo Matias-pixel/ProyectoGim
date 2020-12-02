@@ -161,7 +161,7 @@ public class Login extends javax.swing.JFrame {
               }else{
                   if(oDAO.isUsuarioIsValid(oUsuario)){
                       String adminOrEntrenador = oDAO.obtenerUsuarioId(correo);
-                      if(adminOrEntrenador.equals("Admin")){
+                      if(adminOrEntrenador.equals("admin")){
                           //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ADMIN
                           Menu oMenu = new Menu();
                           oMenu.setVisible(true);
