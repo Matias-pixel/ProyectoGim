@@ -268,7 +268,7 @@ public void sett_campos_trainer(Usuario oUsuario) throws SQLException{
     
     public DefaultTableModel show_actividad() throws SQLException{
     
-    sql="SELECT actividad.id,actividad.nombre, actividad.descripcion,actividad.cupos,actividad.fecha,equipamiento.nombre,tipoactividad.nombre ,usuario.nombre from actividad inner join equipamiento on equipamiento.id = actividad.equipamiento_id_fk inner join tipoactividad on tipoactividad.id = actividad.tipoActividad_id_fk inner join usuario on usuario.id = actividad.usuario_id_fk";
+    sql="SELECT actividad.id,actividad.nombre, actividad.descripcion,actividad.cupos,actividad.fecha,equipamiento.nombre,tipoactividad.nombre ,usuario.nombre from actividad inner join equipamiento on equipamiento.id = actividad.equipamiento_id_fk inner join tipoactividad on tipoactividad.id = actividad.tipoActividad_id_fk inner join usuario on usuario.id = actividad.usuario_id_fk ORDER BY ID";
     oConexion.ejecutarSelect(sql);
     System.out.println(sql);
 
