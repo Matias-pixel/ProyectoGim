@@ -326,7 +326,7 @@ public class ActividadInterfaz extends javax.swing.JFrame {
             .addContainerGap())
     );
 
-    jLabel6.setText("ACTIVIDAD");
+    jLabel6.setText("  ACTIVIDAD");
 
     btn_home.setText("HOME");
     btn_home.addActionListener(new java.awt.event.ActionListener() {
