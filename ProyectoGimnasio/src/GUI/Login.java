@@ -10,6 +10,8 @@ import BD.DAO;
 import MODEL.Usuario;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -48,8 +50,8 @@ public class Login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         pss_usuario = new javax.swing.JPasswordField();
-        btn_verificar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btn_verificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,14 +83,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btn_verificar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Demo Windows 10\\Desktop\\xas.png")); // NOI18N
-        btn_verificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_verificarMouseClicked(evt);
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matías\\Desktop\\ARRIBA2.png")); // NOI18N
+
+        btn_verificar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Matías\\Desktop\\xas.png")); // NOI18N
+        btn_verificar.setText("jButton1");
+        btn_verificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_verificarActionPerformed(evt);
             }
         });
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Demo Windows 10\\Desktop\\ARRIBA2.png")); // NOI18N
 
         javax.swing.GroupLayout pnl_loginLayout = new javax.swing.GroupLayout(pnl_login);
         pnl_login.setLayout(pnl_loginLayout);
@@ -96,10 +99,10 @@ public class Login extends javax.swing.JFrame {
             pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_loginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_loginLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 75, Short.MAX_VALUE)
                 .addGroup(pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jLabel1)
@@ -108,16 +111,17 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(pss_usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                         .addComponent(txt_usuario)))
                 .addGap(85, 85, 85))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_loginLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_verificar)
-                .addGap(140, 140, 140))
+            .addGroup(pnl_loginLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(btn_verificar, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnl_loginLayout.setVerticalGroup(
             pnl_loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_loginLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,9 +131,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pss_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
+                .addGap(122, 122, 122)
                 .addComponent(btn_verificar)
-                .addGap(42, 42, 42))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,16 +154,21 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuarioActionPerformed
 
-<<<<<<< HEAD
+                              
+
+    private void pss_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pss_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pss_usuarioActionPerformed
+
     private void btn_verificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verificarActionPerformed
-         try {
-              String correo = txt_usuario.getText().trim();
-              String password = new String(pss_usuario.getPassword());
-              Usuario oUsuario = new Usuario(correo,password);
-              DAO oDAO = new DAO();
+
+             String correo = txt_usuario.getText().trim();
+             String password = new String(pss_usuario.getPassword());
+             Usuario oUsuario = new Usuario(correo,password);
               
-              
-              if(correo.isEmpty() || password.isEmpty()){
+             try {
+                 DAO oDAO = new DAO();
+                 if(correo.isEmpty() || password.isEmpty()){
                   JOptionPane.showMessageDialog(this, "Los campos están vacios");
               }else{
                   if(oDAO.isUsuarioIsValid(oUsuario)){
@@ -174,55 +183,17 @@ public class Login extends javax.swing.JFrame {
                           
                           MenuTrainer oMenuTrainer = new MenuTrainer();
                           oMenuTrainer.setVisible(true);
-                          this.dispose();
-                          
+                          this.dispose(); 
                       }
                   }else{
                       JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
                   }
-              }
-            
-=======
-    private void pss_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pss_usuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pss_usuarioActionPerformed
+              }         
+             } catch (SQLException ex) {
+                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+             }
+    }//GEN-LAST:event_btn_verificarActionPerformed
 
-    private void btn_verificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_verificarMouseClicked
-        try {
-            String correo = txt_usuario.getText().trim();
-            String password = new String(pss_usuario.getPassword());
-            Usuario oUsuario = new Usuario(correo,password);
-            DAO oDAO = new DAO();
-
-            if(correo.isEmpty() || password.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Los campos están vacios");
-            }else{
-                if(oDAO.isUsuarioIsValid(oUsuario)){
-                    String adminOrEntrenador = oDAO.obtenerUsuarioId(correo);
-                    if(adminOrEntrenador.equals("admin")){
-                        //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ADMIN
-                        Menu oMenu = new Menu();
-                        oMenu.setVisible(true);
-                        this.dispose();
-                    }else{
-                        //CAMBIAR AQUI LAS DIRECCIONES A ABRIR PARA ENTRENADOR
-
-                        MenuTrainer oMenuTrainer = new MenuTrainer();
-                        oMenuTrainer.setVisible(true);
-                        this.dispose();
-
-                    }
-                }else{
-                    JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
-                }
-            }
-
->>>>>>> 5d38fd1fdd43e1bef9d2b43a58cf3a7544e5e809
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }//GEN-LAST:event_btn_verificarMouseClicked
-      
     /**
      * @param args the command line arguments
      */
@@ -263,7 +234,7 @@ public class Login extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btn_verificar;
+    private javax.swing.JButton btn_verificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
