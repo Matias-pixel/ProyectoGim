@@ -157,4 +157,19 @@ BEGIN
 END //
 DELIMITER ;
 -- FIN PROCEDURE 2
+--PROCEDIMIENTO ALMACENADO PARA INSERTAR EN TipoActividad
+DELIMITER //
+CREATE PROCEDURE addTipoActividad(IN _nombre varchar(20))
+BEGIN 
+		DECLARE existe_tipo INT; 
+        SET existe_tipo = (SELECT COUNT(*) FROM tipoactividad WHERE nombre = _nombre);
+        
+        IF (existe_tipo = 0) THEN
+        	INSERT INTO tipoactividad VALUES (null,_nombre);
+        ELSEIF (existe_tipo =1)THEN
+        	SELECT 'Warning'
+        END IF;
+END //
+DELIMITER ; 
+-- FIN PROCEDIMIENTO
 
