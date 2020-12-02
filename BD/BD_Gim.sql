@@ -167,7 +167,7 @@ BEGIN
         IF (existe_tipo = 0) THEN
         	INSERT INTO tipoactividad VALUES (null,_nombre);
         ELSEIF (existe_tipo =1)THEN
-        	SELECT 'Warning'
+        	SELECT 'Warning';
         END IF;
 END //
 DELIMITER ; 
