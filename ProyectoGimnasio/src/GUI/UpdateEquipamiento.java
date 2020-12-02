@@ -10,6 +10,7 @@ import MODEL.Equipamiento;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -168,7 +169,7 @@ public class UpdateEquipamiento extends javax.swing.JFrame {
             oEquipamiento.setDescripción(area.getText());
             
             oDAO.updateEquipamiento(oEquipamiento);
-
+            
             
         } catch (SQLException ex) {
             Logger.getLogger(UpdateEquipamiento.class.getName()).log(Level.SEVERE, null, ex);

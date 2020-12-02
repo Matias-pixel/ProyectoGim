@@ -466,6 +466,7 @@ public DefaultTableModel show_trigger_2() throws SQLException{
        System.out.println(sql);
 
     }
+    
  
 }
 
