@@ -8,7 +8,6 @@ INSERT INTO EQUIPAMIENTO VALUES (null, 'Trotadora','Trotadora 100 kg max',  10  
                                 (null, 'Discos 15 kg','Discos para barras',   10    ,       5          ),
                                 (null, 'Press Banca','Banca para press inclinada',   4    , 1          ),
                                 (null, 'Mancuerna Peso Ajustable','Mancuerna 5 - 10 - 15 kg',   10   ,5),
-                                (null, 'Trotadora','Trotadora 100 kg max',   20    ,        3          ),
                                 (null, 'Barra para dominadas','Multifuncional',   4    ,    1          ),
                                 (null, 'Banca Abdominal','Banca inclinada',       5    ,    1          ),
                                 (null, 'Step Aeróbico','Permite coordinación y resistencia',10    , 2  ),
