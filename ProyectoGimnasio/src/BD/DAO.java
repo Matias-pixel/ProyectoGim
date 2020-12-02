@@ -422,10 +422,50 @@ public DefaultTableModel show_trigger_2() throws SQLException{
         return null;
     
 }
+    
+    public void sett_update_equip(Equipamiento oEquipamiento) throws SQLException{
+  
+    sql="Select nombre, descripcion, cantidad from equipamiento where nombre='"+oEquipamiento.getNombre()+"' ";
+    oConexion.ejecutarSelect(sql);
+    
+    while (oConexion.rs.next()) {
+        
+        oEquipamiento.setNombre(oConexion.rs.getString("nombre"));
+        oEquipamiento.setDescripción(oConexion.rs.getString("descripcion"));
+        oEquipamiento.setCantidad(oConexion.rs.getInt("cantidad"));
+    }
+    
+  
+  }
 
+    public DefaultComboBoxModel llenar_comboboxEquip_name() throws SQLException{
+  
+        sql="Select nombre from equipamiento ";
+        oConexion.ejecutarSelect(sql);
+        System.out.println(sql);
+      
+        DefaultComboBoxModel cbo_modelo = new DefaultComboBoxModel();
+        cbo_modelo.addElement("Selecciona el Nombre del Equipamiento: ");
+        
+        try {
+            while (oConexion.rs.next()) {
+                cbo_modelo.addElement(oConexion.rs.getString("nombre"));
+            }
+            oConexion.rs.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+         return cbo_modelo;
+  
+  }
 
+    public void updateEquipamiento(Equipamiento oEquipamiento) throws SQLException{
 
+       sql="UPDATE equipamiento SET descripcion='"+oEquipamiento.getDescripción()+"', cantidad='"+oEquipamiento.getCantidad()+"' where nombre= '"+oEquipamiento.getNombre()+"' ";
+       oConexion.ejecutar(sql);
+       System.out.println(sql);
 
+    }
  
 }
 
