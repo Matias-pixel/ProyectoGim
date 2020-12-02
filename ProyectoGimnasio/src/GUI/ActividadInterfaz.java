@@ -168,6 +168,11 @@ public class ActividadInterfaz extends javax.swing.JFrame {
         jLabel10.setText("Equipamiento");
 
         cbo_equipamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbo_equipamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_equipamientoActionPerformed(evt);
+            }
+        });
 
         jTable_Actividad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -498,6 +503,10 @@ public class ActividadInterfaz extends javax.swing.JFrame {
     private void jFormattedTextField2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jFormattedTextField2PropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField2PropertyChange
+
+    private void cbo_equipamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_equipamientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_equipamientoActionPerformed
 
     /**
      * @param args the command line arguments
