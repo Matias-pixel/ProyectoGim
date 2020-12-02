@@ -84,6 +84,7 @@ CREATE TABLE HistorialEquipamiento(
 
     ID INT AUTO_INCREMENT,
     EQUIPAMIENTO_ID_FK INT,
+    fecha_actualizado DATETIME
     ANTIGUO_STOCK INT,
     NUEVO_STOCK INT,
     PRIMARY KEY(ID),
