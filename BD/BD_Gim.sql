@@ -124,20 +124,6 @@ DELIMITER ;
 -- ##### PROCEDIMIENTO ALMACENADO PARA FILTRAR ENTRE FECHAS #####
 
 DELIMITER //
-CREATE PROCEDURE calculos_fecha_entre(_FECHA1 DATETIME,_FECHA2 DATETIME)
-BEGIN
-
-    SELECT ACTIVIDAD.NOMBRE, ACTIVIDAD.DESCRIPCION, ACTIVIDAD.FECHA, USUARIO.NOMBRE FROM ACTIVIDAD
-    INNER JOIN USUARIO on USUARIO.ID = ACTIVIDAD.usuario_id_fk
-    WHERE ACTIVIDAD.FECHA BETWEEN _FECHA1 AND _FECHA2;
-
-END //
-DELIMITER ;
-
--- FIN PROCEDURE 1
-
--- PROCEDIMIENTO ALMACENADO PARA MOSTRAR LOS EQUIPAMIENTOS DEPENDIENDO EL ORDEN
-DELIMITER //
 CREATE PROCEDURE equipamiento_mas_usados( IN  _equipamiento INT )
 BEGIN
     IF (_equipamiento = 1) THEN
@@ -145,14 +131,14 @@ BEGIN
         SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM ACTIVIDAD
         INNER JOIN equipamiento on equipamiento.ID = ACTIVIDAD.equipamiento_id_fk
         GROUP by actividad.equipamiento_id_fk
-        ORDER BY actividad.equipamiento_id_fk ASC;
+        ORDER BY COUNT(actividad.equipamiento_id_fk) ASC;
 
     ELSEIF (_equipamiento = 2) THEN
 
         SELECT equipamiento.NOMBRE, COUNT(actividad.equipamiento_id_fk) AS 'VECES USADA' FROM ACTIVIDAD
         INNER JOIN equipamiento on equipamiento.ID = ACTIVIDAD.equipamiento_id_fk
         GROUP by actividad.equipamiento_id_fk
-        ORDER BY actividad.equipamiento_id_fk DESC;
+        ORDER BY COUNT(actividad.equipamiento_id_fk) DESC;
 
     END IF;    
 END //
